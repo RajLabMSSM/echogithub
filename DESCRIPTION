@@ -1,6 +1,6 @@
-Package: echoverseTemplate
+Package: echogithub
 Type: Package
-Title: echoverse module: echoversePackageTitle
+Title: echoverse module: Extract data and metadata from GitHub
 Version: 0.99.0
 Authors@R: 
     c(person(given = "Brian",
@@ -19,15 +19,21 @@ Authors@R:
            email = "towfique.raj@mssm.edu",
            comment = c(ORCID = "0000-0002-9355-5704"))
            ) 
-Description: echoverse module: echoversePackageDescription.
-URL: https://github.com/RajLabMSSM/echoverseTemplate
-BugReports: https://github.com/RajLabMSSM/echoverseTemplate/issues
+Description: echoverse module: Extract data and metadata from GitHub.
+URL: https://github.com/RajLabMSSM/echogithub
+BugReports: https://github.com/RajLabMSSM/echogithub/issues
 Encoding: UTF-8
-LazyData: true
 Depends: R (>= 4.1)
 biocViews:
     Genetics, FunctionalGenomics, SystemsBiology
 Imports:
+    utils,
+    methods,
+    stats,
+    gh,
+    data.table,
+    RCurl,
+    stringr
 Suggests:
     markdown,
     rmarkdown,
@@ -39,10 +45,8 @@ Suggests:
     testthat (>= 3.0.0),
     badger,
     hexSticker,
-    utils,
-    rlang,
-    methods
-RoxygenNote: 7.1.2
+    httr
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3

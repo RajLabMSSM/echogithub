@@ -1,0 +1,173 @@
+---
+title: "echogithub: Getting started" 
+author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
+date: "<h4>Most recent update: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
+output:
+  BiocStyle::html_document
+vignette: >
+    %\VignetteIndexEntry{echogithub} 
+    %\usepackage[utf8]{inputenc}
+    %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup}
+library(echogithub)
+```
+
+# GitHub branches
+
+## List
+
+Easily find all available branches for a given GitHub repo.
+
+```{r}
+branches <- echogithub::github_branches(owner = "RajLabMSSM", 
+                                        repo = "echolocatoR")
+print(branches)
+```
+
+## Check
+
+You can also check whether a particular branch exists.
+By default, `github_branches()` interprets "master" and "main" as synonymous and 
+returns whichever one actually exists.
+
+```{r}
+branches <- echogithub::github_branches(owner = "RajLabMSSM", 
+                                        repo = "echolocatoR", 
+                                        branch = "main")
+print(branches)
+```
+
+
+#  GitHub files 
+
+`github_files()` lets you easily:
+1. Search any GitHub repo
+(that you have access to) for files. 
+2. Filter those files by a *regex* `query`,
+3. Download those files to your local compute 
+(can increase `nThread` to speed up download via parallelization).
+
+*NOTE*: 
+To search your private repos, make sure you
+GitHub token is supplied to the `token` argument, or is saved as in your
+*~.Renviron* file, e.g.: `GITHUB_TOKEN=<token_here>`
+
+## Search / filter / downlaod
+
+```{r}
+files <- echogithub::github_files(owner = "RajLabMSSM", 
+                                  repo = "Fine_Mapping_Shiny",
+                                  query = ".md$",
+                                  ignore.case = TRUE,
+                                  download = TRUE)
+knitr::kable(utils::head(files))
+```
+
+# GitHub Pages
+
+There are several functions to searching GitHub Pages websites associated
+with specific GitHub repos.
+
+## Find GitHub Pages URL
+
+
+First, since not all GitHub repo have use GitHub Pages, we should find out 
+whether the one we're interested in exist. 
+
+```{r}
+ghpages_url <- echogithub::github_pages(owner ="RajLabMSSM",
+                                        repo = "echolocatoR")
+print(ghpages_url)
+```
+
+If it doesn't exist, the function will simply return `NULL` when you set 
+`error=FALSE`.
+
+```{r}
+ghpages_null <- echogithub::github_pages(owner ="RajLabMSSM",
+                                        repo = "Fine_Mapping_Shiny",
+                                        error = FALSE)
+print(ghpages_null)
+```
+
+
+## Find vignettes
+
+`github_pages_vignettes` allows you to easily gather all vignettes 
+across multiple GitHub Pages websites at once.
+
+### As `data.table`
+
+```{r}  
+vdt <- echogithub::github_pages_vignettes(owner = c("RajLabMSSM","neurogenomics"), 
+                                          repo = c("echodata","MungeSumstats"))
+knitr::kable(utils::head(vdt))
+```
+
+### As table of contents
+
+You can also use the `as_toc=TRUE` argument to turn the vignettes `data.table`
+into an HTML Table of Contents (TOC).
+
+```{r, results='asis'}
+toc <-  echogithub::github_pages_vignettes(owner = c("RajLabMSSM","neurogenomics"), 
+                                           repo = c("echodata","MungeSumstats"),
+                                           as_toc = TRUE)
+```
+
+# Hex stickers
+
+You can also search for hex stickers. This can be useful if you want to embed
+the URL in your README files, for example.
+By default, it will wrap the hex sticker URL in an HTML element 
+for easy embedding.
+
+```{r, results="asis"}
+hex <- echogithub::github_hex(owner ="RajLabMSSM", 
+                              repo = "echolocatoR",
+                              add_html = TRUE)
+cat(hex)
+```
+
+# *DESCRIPTION* files
+
+*DESCRIPTION* files contains essential information about each R package.
+However finding and importing them is not always straightforward 
+(e.g. when the package is not yet installed).
+`description_find` searches a variety of sources 
+(e.g. local files, local installations, GitHub) to find the correct 
+*DESCRIPTION* file and import it into the easy-to-use `packageDescription` format.
+
+## Find 
+
+```{r}
+desc_file <- echogithub::description_find(owner = "RajLabMSSM", 
+                                          repo = "echolocatoR")
+methods::show(desc_file)
+```
+
+## Extract
+
+`description_extract` then takes that object and extracts and parses
+just the fields you need, returning them as a named list.
+
+```{r}
+res <- echogithub::description_extract(desc_file = desc_file)
+methods::show(res)
+```
+
+
+# Session Info 
+
+<details> 
+
+```{r Session Info}
+utils::sessionInfo()
+```
+
+</details>  
+
+<br>
+
