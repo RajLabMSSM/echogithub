@@ -30,14 +30,12 @@ github_pages_files <- function(owner,
     }
     #### Search ####
     if (is.null(local_repo)) {
-        dt <- github_files(
-            owner = owner,
-            repo = repo,
-            query = query,
-            branch = branch, 
-            token = token,
-            verbose = verbose
-        )
+        dt <- github_files(owner = owner,
+                           repo = repo,
+                           query = query,
+                           branch = branch, 
+                           token = token,
+                           verbose = verbose)
     } else {
         dt <- data.table::data.table(
             path=gsub("^[.][/]", "", 
@@ -50,7 +48,7 @@ github_pages_files <- function(owner,
         )
     }
     #### Report ####
-    if(nrow(dt)==0) {
+    if(is.null(dt) || nrow(dt)==0) {
         message("WARNING: No files identified.")
         return(NULL)
     }

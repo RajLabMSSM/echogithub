@@ -12,6 +12,7 @@ github_branches(
   as_datatable = FALSE,
   token = gh::gh_token(),
   desc_file = NULL,
+  error = FALSE,
   verbose = TRUE
 )
 }
@@ -48,6 +49,8 @@ here for further instructions}.}
 these arguments are inferred from the \emph{DESCRIPTION} file.
 If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
 it then searches for one in the remote GitHub repository.}
+
+\item{error}{Throw an error when no matching branches are fond.}
 
 \item{verbose}{Print messages.}
 }

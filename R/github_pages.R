@@ -34,5 +34,7 @@ github_pages <- function(owner,
             return(NULL)
         }
     }
+    messager("Returning valid GitHub Pages URL for repo:",
+             paste0(owner,"/",repo,"."),v=verbose)
     return(res$html_url)
 }

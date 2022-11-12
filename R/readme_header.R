@@ -3,7 +3,7 @@
 #' Create a header for your R package's README file,
 #' containing hex stickers and \pkg{badger} badges.
 #' @param add_hex Add a hex sticker with 
-#' \link[echodata]{github_hex}.
+#' \link[echogithub]{github_hex}.
 #' @param add_version Add package version with 
 #' \link[badger]{badge_github_version}.
 #' @param add_actions Add GitHub Actions status with
@@ -62,6 +62,8 @@ readme_header <- function(owner = NULL,
     
     requireNamespace("badger")
     
+    desc_file <- description_find(desc_file = desc_file,
+                                  verbose = verbose)
     out <- infer_owner_repo(owner = owner,
                             repo = repo,
                             desc_file = desc_file,

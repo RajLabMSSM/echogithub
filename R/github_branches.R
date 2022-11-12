@@ -20,6 +20,7 @@
 #' @param as_datatable Return the results as a \link[data.table]{data.table}
 #' (\code{TRUE}), or as a character vector of branch names
 #'  (default: \code{FALSE}).
+#' @param error Throw an error when no matching branches are fond.
 #' @inheritParams github_files
 #' @inheritParams description_find
 #' @returns Character vector or \link[data.table]{data.table} of branches.
@@ -35,6 +36,7 @@ github_branches <- function(owner = NULL,
                             as_datatable = FALSE,
                             token = gh::gh_token(),
                             desc_file = NULL,
+                            error = FALSE,
                             verbose = TRUE){ 
     name <- NULL;
   
@@ -73,7 +75,12 @@ github_branches <- function(owner = NULL,
         ), paste("\n -",dt$name,collapse = ""),v=verbose)
     } else {
         stp <- paste("0 matching branches found.")
-        stop(stp)
+        if(isTRUE(error)) {
+            stop(stp)
+        } else {
+            messager("WARNING:",stp,"Returning NULL.",v=verbose) 
+            return(NULL)
+        } 
     }
     #### Return ####
     if(isTRUE(as_datatable)){

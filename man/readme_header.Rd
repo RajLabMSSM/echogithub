@@ -54,7 +54,7 @@ will check to see if that branch exists. If it does, only that branch will
 be returned. If it doesn't, an error will be thrown.}
 
 \item{add_hex}{Add a hex sticker with 
-\link[echodata]{github_hex}.}
+\link[echogithub]{github_hex}.}
 
 \item{add_version}{Add package version with 
 \link[badger]{badge_github_version}.}

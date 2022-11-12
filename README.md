@@ -1,25 +1,24 @@
-<img src='https://github.com/RajLabMSSM/echoverseTemplate/raw/master/inst/hex/hex.png' height='300'><br><br>
-[![](https://img.shields.io/badge/devel%20version-0.99.0-black.svg)](https://github.com/RajLabMSSM/echoverseTemplate)
+<img src='https://github.com/RajLabMSSM/echogithub/raw/master/inst/hex/hex.png' height='300'><br><br>
 [![R build
-status](https://github.com/RajLabMSSM/echoverseTemplate/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echoverseTemplate/actions)
-[![](https://img.shields.io/github/last-commit/RajLabMSSM/echoverseTemplate.svg)](https://github.com/RajLabMSSM/echoverseTemplate/commits/master)
-[![](https://app.codecov.io/gh/RajLabMSSM/echoverseTemplate/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echoverseTemplate)
+status](https://github.com/RajLabMSSM/echogithub/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echogithub/actions)
+[![](https://img.shields.io/github/last-commit/RajLabMSSM/echogithub.svg)](https://github.com/RajLabMSSM/echogithub/commits/master)
+[![](https://app.codecov.io/gh/RajLabMSSM/echogithub/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echogithub)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
+<h4>
+Authors: <i>Brian Schilder, Jack Humphrey, Towfique Raj</i>
+</h4>
 <h5>
-Author: <i>Brian M. Schilder</i>
-</h5>
-<h5>
-README updated: <i>Nov-11-2022</i>
+README updated: <i>Nov-12-2022</i>
 </h5>
 
-## `echoverseTemplate`: echoversePackageDescription.
+## `echogithub`: Extract data and metadata from GitHub.
 
 This R package is part of the *echoverse* suite that supports
 [`echolocatoR`](https://github.com/RajLabMSSM/echolocatoR): an automated
 genomic fine-mapping pipeline.
 
-If you use `echoverseTemplate`, please cite:
+If you use `echogithub`, please cite:
 
 > Brian M Schilder, Jack Humphrey, Towfique Raj (2021) echolocatoR: an
 > automated end-to-end statistical and functional genomic fine-mapping
@@ -31,15 +30,15 @@ If you use `echoverseTemplate`, please cite:
 ``` r
 if(!require("remotes")) install.packages("remotes")
 
-remotes::install_github("RajLabMSSM/echoverseTemplate")
-library(echoverseTemplate)
+remotes::install_github("RajLabMSSM/echogithub")
+library(echogithub)
 ```
 
 ## Documentation
 
-### [Website](https://rajlabmssm.github.io/echoverseTemplate)
+### [Website](https://rajlabmssm.github.io/echogithub)
 
-### [Getting started](https://rajlabmssm.github.io/echoverseTemplate/articles/echoverseTemplate)
+### [Getting started](https://rajlabmssm.github.io/echogithub/articles/echogithub)
 
 <hr>
 

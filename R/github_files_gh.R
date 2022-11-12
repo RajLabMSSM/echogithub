@@ -17,6 +17,11 @@ github_files_gh <- function(owner,
                             token = gh::gh_token(), 
                             verbose = TRUE) {
     path <- link <- NULL;
+    
+    if(is.null(branch)) {
+        messager("branch is NULL. Returning NULL.",v=verbose)
+        return(NULL)
+    }
     endpoint <- paste(
         "https://api.github.com/repos", owner, repo,
         paste0("git/trees/", branch[1], "?recursive=1"),

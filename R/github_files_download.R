@@ -1,7 +1,7 @@
 #' Download files from GitHub
 #'
 #' Download files from GitHub, e.g. those that have been found with
-#' \link[echodata]{github_files}.
+#' \link[echogithub]{github_files}.
 #' @param filelist A list of remote URLs to download from GitHub.
 #' @inheritParams github_files
 #' 

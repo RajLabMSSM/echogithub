@@ -1,12 +1,6 @@
 ---
 title: ""  
-author: "<img src='`r read.dcf('DESCRIPTION', fields = 'URL')[1]`/raw/master/inst/hex/hex.png' height='300'><br><br>
-        `r badger::badge_github_version(color = 'black')` 
-        `r badger::badge_github_actions(action = 'rworkflows')`
-        `r badger::badge_last_commit(branch='master')`
-        `r badger::badge_codecov(branch='master')` 
-        `r badger::badge_license()` 
-        <h5>Author: <i>Brian M. Schilder</i></h5>" 
+author: "`r echogithub::readme_header()`" 
 date: "<h5>README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h5>"
 output:
   github_document

@@ -40,15 +40,15 @@ github_pages_vignettes <- function(owner,
     #### Gather vignettes ####
     vdt <- lapply(seq_len(length(repo)), function(i){
         dt <- github_pages_files(owner = owner[[i]],
-                           repo = repo[[i]],
-                           branch = branch,
-                           subdir = subdir,
-                           query = query,
-                           local_repo = local_repo,
-                           save_path = save_path,
-                           token = token,
-                           verbose = verbose)
-        if(nrow(dt)==0) return(NULL)
+                                 repo = repo[[i]],
+                                 branch = branch,
+                                 subdir = subdir,
+                                 query = query,
+                                 local_repo = local_repo,
+                                 save_path = save_path,
+                                 token = token,
+                                 verbose = verbose)
+        if(is.null(dt) || nrow(dt)==0) return(NULL)
         #### Remove index file ####
         dt <- dt[!grepl(pattern = "/index.html$",x = path),]
         #### Remove resource files ###

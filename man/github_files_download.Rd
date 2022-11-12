@@ -29,7 +29,7 @@ github_files_download(
 }
 \description{
 Download files from GitHub, e.g. those that have been found with
-\link[echodata]{github_files}.
+\link[echogithub]{github_files}.
 }
 \examples{
 dt <- github_files(owner = "RajLabMSSM",

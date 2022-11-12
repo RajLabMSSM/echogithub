@@ -64,6 +64,7 @@ github_files <- function(owner,
                               branch = branch,  
                               token = token, 
                               verbose = verbose)
+    if(is.null(branch)) return(NULL)
     #### Query ####
     if(method=="httr"){
         dt <- github_files_httr(owner = owner,
@@ -78,6 +79,8 @@ github_files <- function(owner,
                               token = token,
                               verbose = verbose)
     } 
+    #### Return NULL early ####
+    if(is.null(dt)) return(NULL)
     #### Add download link ####
     dt[,link_raw:=paste(
         "https://github.com", owner, repo, "raw",
