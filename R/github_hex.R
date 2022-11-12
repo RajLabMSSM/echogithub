@@ -21,14 +21,7 @@ github_hex <- function(owner = NULL,
                        add_html = TRUE,
                        height = 300,
                        token = gh::gh_token(),
-                       verbose=TRUE){
-    
-    out <- infer_owner_repo(owner = owner,
-                            repo = repo,
-                            desc_file = desc_file,
-                            verbose = verbose)
-    owner <- out$owner
-    repo <- out$repo 
+                       verbose=TRUE){ 
     
     dt <- github_branches(owner = owner, 
                           repo = repo, 

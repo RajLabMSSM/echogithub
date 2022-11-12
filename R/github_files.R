@@ -45,7 +45,7 @@ github_files <- function(owner,
                          branch = c("master"),
                          query = NULL,
                          ignore.case = FALSE,
-                         method = c("gh","httr"), 
+                         method = "gh", 
                          token = gh::gh_token(),
                          download = FALSE,
                          download_dir = tempdir(),
@@ -59,8 +59,10 @@ github_files <- function(owner,
     path <- link_raw <- path_local <- NULL; 
     #### Check args ####
     method <- tolower(method)[[1]]
-    branch <- github_branches(owner = owner, repo = repo, 
-                              branch = branch, token = token, 
+    branch <- github_branches(owner = owner, 
+                              repo = repo, 
+                              branch = branch,  
+                              token = token, 
                               verbose = verbose)
     #### Query ####
     if(method=="httr"){

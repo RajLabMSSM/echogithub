@@ -45,7 +45,7 @@ See \href{https://docs.github.com/en/authentication/keeping-your-account-and-dat
 here for further instructions}.}
 
 \item{desc_file}{When \code{owner} or \code{repo} are NULL, 
-these arguments are inferred from the  \emph{DESCRIPTION} file.
+these arguments are inferred from the \emph{DESCRIPTION} file.
 If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
 it then searches for one in the remote GitHub repository.}
 

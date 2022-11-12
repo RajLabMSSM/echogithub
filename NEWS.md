@@ -12,3 +12,5 @@
 
 * Switched to using `gh` instead of `httr` to avoid API limits imposed by GitHub.
     - Kept `httr` as alternative method.
+* `is_url`:
+    - Add `RCurl::url.exists` check.

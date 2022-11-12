@@ -1,6 +1,6 @@
 infer_owner_repo <- function(owner,
                              repo,
-                             pkg=NULL,
+                             pkg=FALSE,
                              desc_file,
                              verbose=TRUE){
     #### Infer owner ####
@@ -17,7 +17,8 @@ infer_owner_repo <- function(owner,
     }
     #### Infer pkg ####
     ## Sometimes the package name is different from the repo name 
-    if(is.null(repo)){
+    if(!isFALSE(pkg) &&
+       is.null(pkg)){
         pkg <- description_extract(fields = "Package",
                                    desc_file = desc_file,
                                    verbose = verbose)$Package

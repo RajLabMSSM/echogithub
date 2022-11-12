@@ -7,18 +7,24 @@
 #' @inheritParams github_files
 #' @export
 #' @examples  
+#'\dontrun{
 #' res <- description_extract(repo="echolocatoR")
-description_extract <- function(repo = NULL,
-                                desc_file = NULL,
+#'}
+description_extract <- function(desc_file,
+                                repo = NULL,
                                 fields = c("owner",
                                            "repo",
                                            "authors"),
                                 add_html = FALSE,
                                 verbose = TRUE){ 
     #### Find or read DESCRIPTION file ####
-    desc_file <- description_find(repo = repo, 
-                                  desc_file = desc_file, 
-                                  verbose = verbose) 
+    # desc_file <- description_find(repo = repo, 
+    #                               desc_file = desc_file, 
+    #                               verbose = verbose) 
+    force(desc_file)
+    if(is.null(desc_file)) {
+        stopper("desc_file is required for description_extract")
+    }
     #### Extract info ####
     res <- lapply(stats::setNames(fields,
                                   fields), 

@@ -5,20 +5,20 @@
 \title{DESCRIPTION file: extract fields}
 \usage{
 description_extract(
+  desc_file,
   repo = NULL,
-  desc_file = NULL,
   fields = c("owner", "repo", "authors"),
   add_html = FALSE,
   verbose = TRUE
 )
 }
 \arguments{
-\item{repo}{GitHub repository name.}
-
 \item{desc_file}{When \code{owner} or \code{repo} are NULL, 
-these arguments are inferred from the  \emph{DESCRIPTION} file.
+these arguments are inferred from the \emph{DESCRIPTION} file.
 If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
 it then searches for one in the remote GitHub repository.}
+
+\item{repo}{GitHub repository name.}
 
 \item{fields}{Fields to extract.}
 
@@ -31,5 +31,7 @@ Extract information from an R package's DESCRIPTION file.
 }
 \examples{
  
+\dontrun{
 res <- description_extract(repo="echolocatoR")
+}
 }

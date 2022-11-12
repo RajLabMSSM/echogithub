@@ -21,7 +21,7 @@ library(echogithub)
 Easily find all available branches for a given GitHub repo.
 
 ```{r}
-branches <- echogithub::github_branches(owner = "RajLabMSSM", 
+branches <- echogithub::github_branches(owner = "RajLabMSSM",
                                         repo = "echolocatoR")
 print(branches)
 ```

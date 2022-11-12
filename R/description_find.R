@@ -2,21 +2,39 @@
 #' 
 #' Find  DESCRIPTION file for a given R package. 
 #' @param desc_file When \code{owner} or \code{repo} are NULL, 
-#' these arguments are inferred from the  \emph{DESCRIPTION} file.
+#' these arguments are inferred from the \emph{DESCRIPTION} file.
 #' If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
 #' it then searches for one in the remote GitHub repository.
+#' @param use_github Prioritize getting the \emph{DESCRIPTION} file
+#'  from GitHub.
 #' @inheritParams github_files
 #' 
 #' @export
 #' @importFrom methods is
 #' @importFrom utils installed.packages packageDescription 
+#' @importFrom testthat is_testing
 #' @examples 
+#' \dontrun{
 #' desc_file <- description_find(repo="data.table")
+#' }
 description_find <- function(desc_file = NULL,
                              owner = NULL,
                              repo = NULL,
-                             verbose=TRUE){
+                             use_github = FALSE,
+                             verbose = TRUE){
     
+    if(!is.null(owner) && 
+       !is.null(repo) &&
+       (isTRUE(use_github) | 
+        testthat::is_testing())){
+        dt <- github_files(owner = owner,
+                           repo = repo, 
+                           query = "^DESCRIPTION$",
+                           download = TRUE,
+                           verbose = verbose)
+        dfile <- description_read(dcf = dt$path_local)
+        return(dfile)
+    }
     
     # if(isTRUE(testthat::is_testing())){
     #     out <- rprojroot::find_root_file(criterion = rprojroot::has_file("DESCRIPTION"))
@@ -50,7 +68,7 @@ description_find <- function(desc_file = NULL,
                  "current working directory.",v=verbose)
         dfile <- description_read(dcf = "DESCRIPTION")
         return(dfile) 
-        #### From remote file ####
+    #### From remote file ####
     } else if(is_url(desc_file)){
         messager("Getting DESCRIPTION file from a remote file.",v=verbose)
         file <- utils::download.file(desc_file)

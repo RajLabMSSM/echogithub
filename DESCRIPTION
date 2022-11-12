@@ -32,8 +32,9 @@ Imports:
     stats,
     gh,
     data.table,
-    RCurl,
-    stringr
+    stringr,
+    testthat (>= 3.0.0),
+    RCurl
 Suggests:
     markdown,
     rmarkdown,
@@ -42,7 +43,6 @@ Suggests:
     knitr,
     BiocStyle,
     covr,
-    testthat (>= 3.0.0),
     badger,
     hexSticker,
     httr

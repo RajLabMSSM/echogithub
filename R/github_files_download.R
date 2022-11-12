@@ -2,10 +2,18 @@
 #'
 #' Download files from GitHub, e.g. those that have been found with
 #' \link[echodata]{github_files}.
-#' @keywords internal
+#' @param filelist A list of remote URLs to download from GitHub.
+#' @inheritParams github_files
+#' 
+#' @export
 #' @importFrom stringr str_split
 #' @importFrom parallel detectCores mclapply
 #' @importFrom utils download.file 
+#' @examples
+#' dt <- github_files(owner = "RajLabMSSM",
+#'                    repo = "Fine_Mapping_Shiny",
+#'                    query = ".md$")
+#' filelist_local <- github_files_download(filelist = dt$link_raw)
 github_files_download <- function(filelist,
                                   download_dir = tempdir(),
                                   overwrite = FALSE,

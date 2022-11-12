@@ -4,11 +4,17 @@
 \alias{description_find}
 \title{Find a DESCRIPTION file}
 \usage{
-description_find(desc_file = NULL, owner = NULL, repo = NULL, verbose = TRUE)
+description_find(
+  desc_file = NULL,
+  owner = NULL,
+  repo = NULL,
+  use_github = FALSE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{desc_file}{When \code{owner} or \code{repo} are NULL, 
-these arguments are inferred from the  \emph{DESCRIPTION} file.
+these arguments are inferred from the \emph{DESCRIPTION} file.
 If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
 it then searches for one in the remote GitHub repository.}
 
@@ -17,11 +23,16 @@ it then searches for one in the remote GitHub repository.}
 
 \item{repo}{GitHub repository name.}
 
+\item{use_github}{Prioritize getting the \emph{DESCRIPTION} file
+from GitHub.}
+
 \item{verbose}{Print messages.}
 }
 \description{
 Find  DESCRIPTION file for a given R package.
 }
 \examples{
+\dontrun{
 desc_file <- description_find(repo="data.table")
+}
 }

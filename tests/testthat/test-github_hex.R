@@ -8,7 +8,10 @@ test_that("github_hex works", {
         "<img src='https://github.com/RajLabMSSM/echolocatoR/raw/master/inst/hex/hex.png' height='300'>")
     
     #### When a hex DOES NOT exists ####
-    hex2 <- github_hex(owner = "RajLabMSSM",
-                       repo = "Fine_Mapping_Shiny")
-    testthat::expect_null(hex2)
+    if(.Platform$OS.type!="Linux"){
+        ## RCurl functionality causes error on Linux
+        hex2 <- github_hex(owner = "RajLabMSSM",
+                           repo = "Fine_Mapping_Shiny")
+        testthat::expect_null(hex2)
+    } 
 })

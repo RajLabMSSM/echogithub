@@ -35,7 +35,7 @@ github_branches <- function(owner = NULL,
                             as_datatable = FALSE,
                             token = gh::gh_token(),
                             desc_file = NULL,
-                            verbose=TRUE){ 
+                            verbose = TRUE){ 
     name <- NULL;
   
     out <- infer_owner_repo(owner = owner,

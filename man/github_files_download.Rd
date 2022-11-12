@@ -13,8 +13,27 @@ github_files_download(
   verbose = TRUE
 )
 }
+\arguments{
+\item{filelist}{A list of remote URLs to download from GitHub.}
+
+\item{download_dir}{Directory to download files into.}
+
+\item{overwrite}{If a local file already exists, overwrite it.}
+
+\item{timeout}{How long to wait before timing out during queries/downloads
+(in units of seconds).}
+
+\item{nThread}{Number of threads to parallelize queries/downloads across.}
+
+\item{verbose}{Print messages.}
+}
 \description{
 Download files from GitHub, e.g. those that have been found with
 \link[echodata]{github_files}.
 }
-\keyword{internal}
+\examples{
+dt <- github_files(owner = "RajLabMSSM",
+                   repo = "Fine_Mapping_Shiny",
+                   query = ".md$")
+filelist_local <- github_files_download(filelist = dt$link_raw)
+}

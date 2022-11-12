@@ -10,7 +10,7 @@ github_files(
   branch = c("master"),
   query = NULL,
   ignore.case = FALSE,
-  method = c("gh", "httr"),
+  method = "gh",
   token = gh::gh_token(),
   download = FALSE,
   download_dir = tempdir(),
