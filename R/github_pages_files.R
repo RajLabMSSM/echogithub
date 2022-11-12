@@ -49,7 +49,7 @@ github_pages_files <- function(owner,
     }
     #### Report ####
     if(is.null(dt) || nrow(dt)==0) {
-        message("WARNING: No files identified.")
+        messager("WARNING: No files identified.",v=verbose)
         return(NULL)
     }
     gh_pages_url <- github_pages(owner = owner, 
