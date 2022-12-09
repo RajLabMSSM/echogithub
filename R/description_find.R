@@ -13,10 +13,8 @@
 #' @importFrom methods is
 #' @importFrom utils installed.packages packageDescription 
 #' @importFrom testthat is_testing
-#' @examples 
-#' \dontrun{
-#' desc_file <- description_find(repo="data.table")
-#' }
+#' @examples  
+#' desc_file <- description_find(repo="data.table") 
 description_find <- function(desc_file = NULL,
                              owner = NULL,
                              repo = NULL,

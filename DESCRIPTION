@@ -1,7 +1,7 @@
 Package: echogithub
 Type: Package
 Title: echoverse module: Extract data and metadata from GitHub
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -45,8 +45,9 @@ Suggests:
     covr,
     badger,
     hexSticker,
-    httr
-RoxygenNote: 7.2.1
+    httr,
+    rvest
+RoxygenNote: 7.2.2
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3

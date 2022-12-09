@@ -66,7 +66,7 @@ A list of paths.
 Search for files within a GitHub repository and filter them 
 by a regex \code{query}. Optionally, can download these selected files to 
 your local computer using the original folder structure.
-\emph{NOTET}: To search your private repos, make sure you
+\emph{NOTE}: To search your private repos, make sure you
 GitHub token is supplied to the \code{token} argument, or is saved as in your
 \emph{~.Renviron} file, e.g.: \code{GITHUB_TOKEN=<token_here>}
 }

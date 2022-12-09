@@ -32,7 +32,6 @@ from GitHub.}
 Find  DESCRIPTION file for a given R package.
 }
 \examples{
-\dontrun{
-desc_file <- description_find(repo="data.table")
-}
+ 
+desc_file <- description_find(repo="data.table") 
 }

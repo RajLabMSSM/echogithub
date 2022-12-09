@@ -11,7 +11,7 @@ test_that("github_branches works", {
     testthat::expect_equal(branches2,"master")
     
     #### Specific branch: without synonym matching ####
-    testthat::expect_error(
+    testthat::expect_null(
         github_branches(owner="RajLabMSSM", 
                         repo="echolocatoR",
                         branch = "main",

@@ -1,3 +1,13 @@
+# echogithub 0.99.1
+
+## New features
+
+* New functions:
+    - `github_permissions`
+    - `github_metadata`
+    - `github_commits`
+    - `github_traffic`
+    
 # echogithub 0.99.0
 
 ## New features
