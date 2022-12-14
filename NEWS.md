@@ -7,6 +7,7 @@
     - `github_metadata`
     - `github_commits`
     - `github_traffic`
+    - `r_repos`
     
 # echogithub 0.99.0
 

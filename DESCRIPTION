@@ -46,8 +46,12 @@ Suggests:
     badger,
     hexSticker,
     httr,
-    rvest
-RoxygenNote: 7.2.2
+    rvest,
+    BiocManager,
+    githubinstall,
+    UpSetR,
+    grDevices
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3
