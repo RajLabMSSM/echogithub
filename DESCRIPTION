@@ -34,7 +34,8 @@ Imports:
     data.table,
     stringr,
     testthat (>= 3.0.0),
-    RCurl
+    RCurl,
+    rvest
 Suggests:
     markdown,
     rmarkdown,
@@ -45,12 +46,12 @@ Suggests:
     covr,
     badger,
     hexSticker,
-    httr,
-    rvest,
+    httr, 
     BiocManager,
     githubinstall,
     UpSetR,
-    grDevices
+    grDevices,
+    dlstats (>= 0.1.6)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 License: GPL-3

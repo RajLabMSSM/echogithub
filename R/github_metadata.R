@@ -13,10 +13,10 @@
 #' dt <- github_metadata(owner="RajLabMSSM", 
 #'                       repo="echolocatoR")
 github_metadata <- function(owner,
-                           repo, 
-                           add_traffic = FALSE,
-                           token = gh::gh_token(),
-                           verbose = TRUE) { 
+                            repo, 
+                            add_traffic = FALSE, 
+                            token = gh::gh_token(),
+                            verbose = TRUE) { 
     # echoverseTemplate:::source_all()
     # echoverseTemplate:::args2vars(github_metadata)
     

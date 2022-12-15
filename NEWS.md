@@ -2,12 +2,22 @@
 
 ## New features
 
-* New functions:
+* New GitHub functions:
     - `github_permissions`
     - `github_metadata`
     - `github_commits`
     - `github_traffic`
+    - `github_dependents`
+    - `github_dependencies`
+* New functions for finding which repos R packages are in:
     - `r_repos`
+    - `r_repos_data`
+    - `r_repos_downloads`
+    - `r_repos_opts`
+    
+## Bug fixes
+
+* Elevate `rvest` to *Imports*.
     
 # echogithub 0.99.0
 

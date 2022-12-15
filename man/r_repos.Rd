@@ -4,9 +4,27 @@
 \alias{r_repos}
 \title{R repositories}
 \usage{
-r_repos(save_path = tempfile(pattern = "upsetr.pdf"), verbose = TRUE)
+r_repos(
+  which = r_repos_opts(),
+  version = NULL,
+  upset_plot = TRUE,
+  show_plot = TRUE,
+  save_path = tempfile(fileext = "upsetr.pdf"),
+  verbose = TRUE
+)
 }
 \arguments{
+\item{which}{Which R repositories to extract data from.}
+
+\item{version}{(Optional) \code{character(1)} or \code{package_version}
+indicating the \emph{Bioconductor} version (e.g., "3.8") for which
+repositories are required.}
+
+\item{upset_plot}{Whether to create an upset plot 
+showing R package overlap between repositories.}
+
+\item{show_plot}{Print the plot.}
+
 \item{save_path}{Path to save upset plot to.}
 
 \item{verbose}{Print messages.}
@@ -16,7 +34,7 @@ Named list.
 }
 \description{
 Report on which repositories R packages are distributed through
- (e.g. CRAN, Bioc, rOpenSci, and/or GitHub).
+ (i.e. base R, CRAN, Bioc, rOpenSci, R-Forge, and/or GitHub).
 }
 \examples{
 report <- r_repos()

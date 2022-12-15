@@ -38,5 +38,9 @@ github_dependents <- function(owner,
         data.table::data.table() |> 
         `colnames<-`(c("owner","repo","stargazers_count","forks_count"))
     dt <- cbind(target=paste(owner,repo,sep="/"),dt)
+    #### Report ####
+    messager("Found",formatC(nrow(dt),big.mark = ","),
+             "dependents.",v=verbose)
+    #### Return ####    
     return(dt)
 }
