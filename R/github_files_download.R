@@ -7,7 +7,7 @@
 #' 
 #' @export
 #' @importFrom stringr str_split
-#' @importFrom parallel detectCores mclapply
+#' @importFrom parallel mclapply
 #' @importFrom utils download.file 
 #' @examples
 #' dt <- github_files(owner = "RajLabMSSM",

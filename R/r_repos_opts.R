@@ -7,5 +7,6 @@
 #' which <- r_repos_opts()
 r_repos_opts <- function(){
     c("base","CRAN","Bioc",
-      "rOpenSci","Rforge","GitHub")
+      "rOpenSci","Rforge","GitHub",
+      "local")
 }

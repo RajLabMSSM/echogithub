@@ -5,20 +5,34 @@
 \title{R repositories data}
 \usage{
 r_repos_data(
+  include = NULL,
   add_downloads = FALSE,
+  add_descriptions = FALSE,
   which = r_repos_opts(),
+  cast = FALSE,
   version = NULL,
+  nThread = 1,
   verbose = TRUE
 )
 }
 \arguments{
+\item{include}{A subset of packages to return data for.}
+
 \item{add_downloads}{Add the number of downloads from each repository.}
 
+\item{add_descriptions}{Add metadata extracted from \emph{DESCRIPTION} files.}
+
 \item{which}{Which R repositories to extract data from.}
+
+\item{cast}{Cast the results to wide format
+so that each package only appears in one row.}
 
 \item{version}{(Optional) \code{character(1)} or \code{package_version}
 indicating the \emph{Bioconductor} version (e.g., "3.8") for which
 repositories are required.}
+
+\item{nThread}{Number of threads to parallelise \code{add_descriptions} 
+step across.}
 
 \item{verbose}{Print messages.}
 }

@@ -17,7 +17,7 @@
 #' desc_file <- description_find(repo="data.table") 
 description_find <- function(desc_file = NULL,
                              owner = NULL,
-                             repo = NULL,
+                             repo = NULL, 
                              use_github = FALSE,
                              verbose = TRUE){
     
@@ -56,12 +56,14 @@ description_find <- function(desc_file = NULL,
         return(dfile)
     #### From local file ####
     } else if(!is.null(desc_file) && 
-              file.exists(desc_file)) {
+              file.exists(desc_file) &&
+              any(description_read(dcf = desc_file)$Package==repo)) {
         messager("Getting DESCRIPTION file from a local file.",v=verbose)
         dfile <- description_read(dcf = desc_file)
         return(dfile)
     #### From remote file ####
-    } else if(file.exists("DESCRIPTION")) {
+    } else if(file.exists("DESCRIPTION") &&
+              any(description_read(dcf = desc_file)$Package==repo)) {
         messager("Getting DESCRIPTION file from a local file in the",
                  "current working directory.",v=verbose)
         dfile <- description_read(dcf = "DESCRIPTION")
@@ -73,7 +75,8 @@ description_find <- function(desc_file = NULL,
         dfile <- description_read(dcf = file)
         return(dfile)
     #### From GitHub Repo ####
-    } else if (!is.null(owner) && !is.null(repo)){
+    } else if (!is.null(owner) &&
+               !is.null(repo)){
         messager("Getting DESCRIPTION file from GitHub repository.",v=verbose)
         dt <- github_files(owner = owner,
                            repo = repo, 

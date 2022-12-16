@@ -2,7 +2,13 @@
 #' 
 #' Gather data on which repositories R packages are distributed through
 #'  (e.g. CRAN, Bioc, rOpenSci, and/or GitHub).
+#' @param include A subset of packages to return data for.
 #' @param add_downloads Add the number of downloads from each repository.
+#' @param add_descriptions Add metadata extracted from \emph{DESCRIPTION} files.
+#' @param cast Cast the results to wide format
+#'  so that each package only appears in one row.
+#' @param nThread Number of threads to parallelise \code{add_descriptions} 
+#' step across.
 #' @param verbose Print messages.
 #' @inheritParams r_repos
 #' @inheritParams BiocManager::repositories
@@ -10,15 +16,21 @@
 #' 
 #' @export
 #' @importFrom utils installed.packages available.packages
+#' @importFrom data.table merge.data.table
 #' @examples 
 #' pkgs <- r_repos_data()
-r_repos_data <- function(add_downloads=FALSE,
+r_repos_data <- function(include=NULL,
+                         add_downloads=FALSE,
+                         add_descriptions=FALSE,
                          which=r_repos_opts(),
+                         cast=FALSE,
                          version=NULL,
+                         nThread=1,
                          verbose=TRUE){
     requireNamespace("rvest")
     requireNamespace("BiocManager")
     requireNamespace("githubinstall")
+    installed <- package <- NULL;
     
     which <- tolower(which)
     res <- list()
@@ -79,16 +91,42 @@ r_repos_data <- function(add_downloads=FALSE,
         github <- githubinstall::gh_list_packages() 
         res[["GitHub"]] <- data.table::data.table(package=github$package_name)
     }
+    #### GitHub ####
+    if("local" %in% which){  
+        messager("Gathering R packages: local",v=verbose)
+        # githubinstall::gh_update_package_list()
+        local <- utils::installed.packages()
+        res[["local"]] <- data.table::data.table(package=rownames(local))
+    }
     #### Merge all repos #### 
     pkgs <- data.table::rbindlist(res, 
                                   fill = TRUE,
                                   use.names = TRUE, 
                                   idcol = "r_repo") 
+    if(!is.null(include)) pkgs <- pkgs[package %in% include]
+    #### Add installed info ####
+    pkgs[,installed:=package %in% rownames(utils::installed.packages())]
     #### Add downloads ####
     if(isTRUE(add_downloads)){
         pkgs <- r_repos_downloads(pkgs = pkgs,
                                   which = which,
                                   verbose = verbose)
+    }
+    #### Cast wider ####
+    if(isTRUE(cast)){ 
+        pkgs <- r_repos_data_cast(pkgs = pkgs,
+                                  verbose = verbose)
+       
+    }
+    #### Add DESRIPTION metadata ####
+    if(isTRUE(add_descriptions)){
+        meta_desc <- description_extract_multi(pkgs = unique(pkgs$package),
+                                               nThread = nThread,
+                                               verbose = verbose)
+        pkgs <- data.table::merge.data.table(meta_desc,
+                                             pkgs,
+                                             all = TRUE,
+                                             by="package")
     }
     return(pkgs)
 }

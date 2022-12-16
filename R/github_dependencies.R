@@ -69,11 +69,17 @@ github_dependencies <- function(owner,
             workflow_url=workflow_url,
             d)  
     }) |> data.table::rbindlist(fill = TRUE) 
+    #### Add owner/repo for each action ####
+    dt <- cbind(dt,
+          data.table::data.table(
+              stringr::str_split(dt$action,"/", simplify = TRUE)
+          )|> `colnames<-`(c("owner","repo")))
     ## Unsure why some rows have the branch name instead of a number.
     #### Report ####
     messager("Found",formatC(nrow(dt),big.mark = ","),
              "dependencies across",
-             formatC(dt$workflow,big.mark = ","),"workflows.",v=verbose)
+             formatC(length(unique(dt$workflow)),big.mark = ","),
+             "workflows.",v=verbose)
     #### Return ####
     return(dt)
 }

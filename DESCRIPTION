@@ -35,7 +35,8 @@ Imports:
     stringr,
     testthat (>= 3.0.0),
     RCurl,
-    rvest
+    rvest,
+    parallel
 Suggests:
     markdown,
     rmarkdown,

@@ -9,6 +9,7 @@
 #' 
 #' @export
 #' @importFrom data.table rbindlist data.table setnames dcast merge.data.table
+#' @importFrom data.table :=
 #' @examples 
 #' pkgs <- r_repos_data()[r_repo=="CRAN",][seq_len(5),]
 #' pkgs2 <- r_repos_downloads(pkgs = pkgs)
@@ -16,15 +17,21 @@ r_repos_downloads <- function(pkgs,
                               which=r_repos_opts(),
                               use_cache=TRUE,
                               verbose=TRUE){ 
+    
+    requireNamespace("dlstats")
     downloads <- NULL;
     
+    #### Check args ####
+    pkgs <- check_pkgs(pkgs = pkgs)    
     if(all(is.null(which))) return(NULL)
-    requireNamespace("dlstats")
     which <- tolower(which)
     res <- list()
     #### GitHub ####
     if("github" %in% which){
         res[["GitHub"]] <- r_repos_downloads_github(pkgs=pkgs,
+                                                    fields=c("Package",
+                                                             "owner",
+                                                             "repo"),
                                                     verbose=verbose)         
     }
     #### CRAN ####
@@ -41,21 +48,17 @@ r_repos_downloads <- function(pkgs,
     }
     #### rbind ####    
     dat <- data.table::rbindlist(res, 
-                                 fill = TRUE, use.names = TRUE, 
+                                 fill = TRUE, 
+                                 use.names = TRUE, 
                                  idcol = "r_repo") 
     #### Aggregate and cast data ####
     dat_agg <- dat[,list(downloads=sum(downloads)),
-               by=c("r_repo","package")] #|> 
-        # data.table::dcast(formula = "package ~ repo", 
-        #                   fill = NA,
-        #                   value.var = "downloads") |>
-        # data.table::setnames(
-        #     old = c("Bioc","CRAN","GitHub"), 
-        #     new = c("downloads_bioc","downloads_cran","downloads_github"),
-        #     skip_absent = TRUE)
+               by=c("r_repo","package")]
     #### Merge with input data ####
+    by <- c("package","r_repo")
+    
     pkgs <- data.table::merge.data.table(pkgs,dat_agg,
-                                         by=c("package","r_repo"),
+                                         by=by[by %in% names(pkgs)],
                                          all.x = TRUE)
     return(pkgs) 
 }

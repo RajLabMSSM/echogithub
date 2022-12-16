@@ -18,6 +18,7 @@
 ## Bug fixes
 
 * Elevate `rvest` to *Imports*.
+* Add `parallel` to *Imports*. 
     
 # echogithub 0.99.0
 

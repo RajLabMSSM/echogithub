@@ -5,10 +5,11 @@
 \title{DESCRIPTION file: extract fields}
 \usage{
 description_extract(
-  desc_file,
+  desc_file = NULL,
   repo = NULL,
   fields = c("owner", "repo", "authors"),
   add_html = FALSE,
+  as_datatable = FALSE,
   verbose = TRUE
 )
 }
@@ -24,7 +25,12 @@ it then searches for one in the remote GitHub repository.}
 
 \item{add_html}{Add HTML styling to certain fields (e.g "authors").}
 
+\item{as_datatable}{Convert the results into a \link[data.table]{data.table}.}
+
 \item{verbose}{Print messages.}
+}
+\value{
+A named list or \link[data.table]{data.table}.
 }
 \description{
 Extract information from an R package's DESCRIPTION file.
