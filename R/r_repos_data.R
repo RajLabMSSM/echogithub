@@ -18,7 +18,13 @@
 #' @importFrom utils installed.packages available.packages
 #' @importFrom data.table merge.data.table
 #' @examples 
+#' #### Without downloads data ####
 #' pkgs <- r_repos_data()
+#' 
+#' #### With downloads data ####
+#' include <- pkgs[r_repo=="Bioc",][seq_len(10),]$package
+#' downloads <- r_repos_data(include=include,
+#'                           add_downloads = TRUE)
 r_repos_data <- function(include=NULL,
                          add_downloads=FALSE,
                          add_descriptions=FALSE,
