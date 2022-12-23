@@ -52,7 +52,11 @@ Suggests:
     githubinstall,
     UpSetR,
     grDevices,
-    dlstats (>= 0.1.6)
+    dlstats (>= 0.1.6),
+    cranlogs,
+    BiocPkgTools
+Remotes:
+    github::neurogenomics/cranlogs
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 License: GPL-3

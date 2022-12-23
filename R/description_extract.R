@@ -20,7 +20,7 @@ description_extract <- function(desc_file = NULL,
                                            "repo",
                                            "authors"),
                                 add_html = FALSE,
-                                as_datatable = FALSE,
+                                as_datatable = FALSE, 
                                 verbose = TRUE){ 
     #### Find or read DESCRIPTION file ####
     if(is.null(desc_file)){
@@ -29,14 +29,16 @@ description_extract <- function(desc_file = NULL,
                                       verbose = verbose)
     }
     force(desc_file)
+    all_fields <- unique(c("owner","repo","authors","github_url",
+                           names(desc_file)))
     if(is.null(desc_file)) {
         stopper("desc_file is required for description_extract")
     }
     if(is.null(fields)) { 
-        fields <- c("owner","repo",names(desc_file))
-    }
+        fields <- all_fields
+    } 
     fields <- unique(fields)
-    fields <- fields[fields %in% c("owner","repo",names(desc_file))]
+    fields <- fields[fields %in% all_fields]
     #### Extract info ####
     messager("Extracting",length(fields),"field(s).",v=verbose)
     res <- lapply(stats::setNames(fields,
@@ -44,37 +46,30 @@ description_extract <- function(desc_file = NULL,
                   function(f){
         # messager("Inferring",f,"from DESCRIPTION file.",v=verbose)
         #### Check fields ####
-        if(f=="owner") {
-            i <- 2
-        } else if(f=="repo") {
-            i <- 1
-        } else if(f %in% c("authors","Authors@R")) {
+        if(f %in% c("authors","Authors@R","Author")) {
             authors <- description_authors(desc_file = desc_file,
                                            add_html = add_html) 
             return(authors)
         } else if(f %in% names(desc_file)){
             return(desc_file[[f]])
-        } else {
-          stp <- paste("fields must be one of:",
-                       paste("\n -",c(
-                           eval(formals(description_extract)$fields),
-                           names(desc_file)
-                       ), collapse = ""))
-          stop(stp)
-        }
-        #### Parse info #### 
-        URL <- desc_file$URL
-        if(is.na(URL)){
-            stp <- "Cannot find URL field in DESCRIPTION file."
-            stop(stp)
+        } else if(f=="github_url"){
+            gh_url <- get_github_url(desc_file = desc_file)
+            return(gh_url)
+        } else if(f=="owner"){
+            gh_url <- get_github_url(desc_file = desc_file)
+            if(is.null(gh_url)) {
+                return(NULL)
+            } else {
+                return(rev(strsplit(gh_url,"/")[[1]])[2])
+            }  
+        } else if(f=="repo"){
+            gh_url <- get_github_url(desc_file = desc_file)
+            if(is.null(gh_url)) {
+                return(NULL)
+            } else {
+                return(rev(strsplit(gh_url,"/")[[1]])[1])
+            }  
         } 
-        i <- if(f=="owner") 2 else if(f=="repo") 1 else {
-            stp <- "fields must be 'owner' or 'repo'"
-            stop(stp)
-        }
-        info <- rev(strsplit(URL,"/")[[1]])[i]    
-        # messager(paste0("+ ",f,":"),info,v=verbose)
-        return(info)
     })
     #### Return ####
     if(isTRUE(as_datatable)){

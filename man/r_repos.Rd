@@ -7,9 +7,15 @@
 r_repos(
   which = r_repos_opts(),
   version = NULL,
+  add_downloads = FALSE,
+  add_descriptions = FALSE,
+  add_github = FALSE,
   upset_plot = TRUE,
   show_plot = TRUE,
   save_path = tempfile(fileext = "upsetr.pdf"),
+  height = 7,
+  width = 10,
+  nThread = 1,
   verbose = TRUE
 )
 }
@@ -20,12 +26,25 @@ r_repos(
 indicating the \emph{Bioconductor} version (e.g., "3.8") for which
 repositories are required.}
 
+\item{add_downloads}{Add the number of downloads from each repository.}
+
+\item{add_descriptions}{Add metadata from \emph{DESCRIPTION} files.}
+
+\item{add_github}{Add metadata from the respective GitHub repository 
+for each R package (if any exists).}
+
 \item{upset_plot}{Whether to create an upset plot 
 showing R package overlap between repositories.}
 
 \item{show_plot}{Print the plot.}
 
 \item{save_path}{Path to save upset plot to.}
+
+\item{height}{Saved plot height.}
+
+\item{width}{Saved plot width.}
+
+\item{nThread}{Number of threads to parallelise data queries across.}
 
 \item{verbose}{Print messages.}
 }

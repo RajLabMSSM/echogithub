@@ -6,6 +6,7 @@
 #' Borrowed from \code{seqminer} internal function}
 #' 
 #' @keywords internal
+#' @importFrom RCurl url.exists
 is_url <- function(path,
                    protocols=c("http","https",
                                "ftp","ftps",
@@ -15,8 +16,7 @@ is_url <- function(path,
     if(is.null(path)) return(FALSE)
     pattern <- paste(paste0("^",protocols,"://"),collapse = "|")
     if (grepl(pattern = pattern, x = path, ignore.case = TRUE)) {
-        if(isTRUE(check_exists)){
-            requireNamespace("RCurl")
+        if(isTRUE(check_exists)){ 
             return(RCurl::url.exists(path))
         }
         return(TRUE)

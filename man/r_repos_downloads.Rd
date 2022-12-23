@@ -3,11 +3,16 @@
 \name{r_repos_downloads}
 \alias{r_repos_downloads}
 \title{Get downloads data from CRAN/Bioconductor/GitHub}
+\source{
+\href{https://github.com/GuangchuangYu/dlstats/issues/5}{
+\pkg{dlstats} Issue with getting downloads data for many packages at once.}
+}
 \usage{
 r_repos_downloads(
-  pkgs,
+  pkgs = NULL,
   which = r_repos_opts(),
   use_cache = TRUE,
+  nThread = 1,
   verbose = TRUE
 )
 }
@@ -19,6 +24,8 @@ r_repos_downloads(
 \item{use_cache}{logical, should cached data be used? Default: TRUE. If set to FALSE, it will
 re-query download stats and update cache.}
 
+\item{nThread}{Number of threads to parallelise data queries across.}
+
 \item{verbose}{Print messages.}
 }
 \description{
@@ -26,6 +33,11 @@ Get the total number of downloads for each R package in
 CRAN, Bioconductor, and/or GitHub.
 }
 \examples{
+#### All packages ####
+pkgs_all <- r_repos_downloads(which = "Bioc")
+
+#### Specific packages ####
 pkgs <- r_repos_data()[r_repo=="CRAN",][seq_len(5),]
-pkgs2 <- r_repos_downloads(pkgs = pkgs)
+pkgs2 <- r_repos_downloads(pkgs = pkgs,
+                           which = c("CRAN","Bioc"))
 }

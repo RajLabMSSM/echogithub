@@ -4,7 +4,10 @@
 \alias{r_repos_opts}
 \title{R repository options}
 \usage{
-r_repos_opts()
+r_repos_opts(exclude = "local")
+}
+\arguments{
+\item{exclude}{Repositories to exclude.}
 }
 \value{
 Character vector

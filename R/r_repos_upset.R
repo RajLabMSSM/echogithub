@@ -2,7 +2,7 @@ r_repos_upset <- function(pkgs,
                           show_plot=TRUE,
                           save_path=tempfile(fileext = "upsetr.pdf"),
                           height=7,
-                          width=8,
+                          width=10,
                           verbose = TRUE,
                           ...){
     requireNamespace("UpSetR")

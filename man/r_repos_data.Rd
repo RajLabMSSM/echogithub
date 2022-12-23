@@ -8,6 +8,7 @@ r_repos_data(
   include = NULL,
   add_downloads = FALSE,
   add_descriptions = FALSE,
+  add_github = FALSE,
   which = r_repos_opts(),
   cast = FALSE,
   version = NULL,
@@ -20,7 +21,10 @@ r_repos_data(
 
 \item{add_downloads}{Add the number of downloads from each repository.}
 
-\item{add_descriptions}{Add metadata extracted from \emph{DESCRIPTION} files.}
+\item{add_descriptions}{Add metadata from \emph{DESCRIPTION} files.}
+
+\item{add_github}{Add metadata from the respective GitHub repository 
+for each R package (if any exists).}
 
 \item{which}{Which R repositories to extract data from.}
 
@@ -44,5 +48,14 @@ Gather data on which repositories R packages are distributed through
  (e.g. CRAN, Bioc, rOpenSci, and/or GitHub).
 }
 \examples{
-pkgs <- r_repos_data()
+#### All packages ####
+pkgs1 <- r_repos_data()
+#### Specific packages ####
+#### Add extra data ####
+pkgs3 <- r_repos_data(include="echogithub",
+                      which = r_repos_opts(exclude = NULL),
+                      add_downloads = TRUE,
+                      add_descriptions = TRUE,
+                      add_github = TRUE,
+                      cast=TRUE)
 }

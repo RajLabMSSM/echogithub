@@ -14,11 +14,16 @@
     - `r_repos_data`
     - `r_repos_downloads`
     - `r_repos_opts`
+* Added more robust func to get GH url: `get_github_url()`
     
 ## Bug fixes
 
 * Elevate `rvest` to *Imports*.
 * Add `parallel` to *Imports*. 
+* `r_repos_downloads_bioc`  / `r_repos_downloads_cran`
+    - Split queries into batches to prevent issues 
+        requesting with too many packages at once.
+    - Parallelise.
     
 # echogithub 0.99.0
 
