@@ -4,7 +4,7 @@
 \alias{r_repos_opts}
 \title{R repository options}
 \usage{
-r_repos_opts(exclude = "local")
+r_repos_opts(exclude = NULL)
 }
 \arguments{
 \item{exclude}{Repositories to exclude.}

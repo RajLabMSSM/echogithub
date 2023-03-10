@@ -1,6 +1,6 @@
 ---
 title: ""  
-author: "`r echogithub::readme_header()`" 
+author: "`r rworkflows::use_badges()`" 
 date: "<h5>README updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h5>"
 output:
   github_document

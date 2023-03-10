@@ -2,7 +2,8 @@ r_repos_list <- function(which,
                          include=NULL,
                          version=NULL,
                          verbose=TRUE){ 
-    package <- installed <- NULL;
+    
+    package <- installed <- github_url <- NULL;
     
     which <- tolower(which)
     res <- list()
@@ -31,7 +32,11 @@ r_repos_list <- function(which,
         # and anything currently installed. 
         # bioc <- BiocManager::available()  
         ### This only gives Bioc packages ####
-        if(is.null(version)) version <- BiocManager::version()
+        
+        if(is.null(version)||
+           identical(version,base::version)) {
+            version <- BiocManager::version()
+        }
         repos <- suppressMessages(
             BiocManager::repositories(version = version)
         )
@@ -66,7 +71,22 @@ r_repos_list <- function(which,
         messager("Gathering R packages: GitHub",v=verbose)
         # githubinstall::gh_update_package_list()
         github <- githubinstall::gh_list_packages() 
-        res[["GitHub"]] <- data.table::data.table(package=github$package_name)
+        gh_res <- data.table::data.table(package=github$package_name)
+        ## Check for any that are indeed on github but not in githubinstall.
+        missing_pkgs <- include[!include %in% unique(github$package_name)]
+        if(length(missing_pkgs)>0){
+            messager("Gathering R packages: GitHub+",v=verbose)
+            d <- description_extract_multi(pkgs = missing_pkgs,
+                                           fields = c("Package","github_url"),
+                                           verbose = verbose)
+            d <- d[is.character(github_url) & (!is.na(github_url)),]  
+            if(nrow(d)>0){
+                gh_res <- rbind(
+                    gh_res,
+                    data.table::data.table(package=d$package))
+            }
+        }
+        res[["GitHub"]] <- gh_res
     }
     #### GitHub ####
     if("local" %in% which){  
@@ -74,12 +94,13 @@ r_repos_list <- function(which,
         # githubinstall::gh_update_package_list()
         local <- utils::installed.packages()
         res[["local"]] <- data.table::data.table(package=rownames(local))
-    }
+    } 
     #### Merge all repos #### 
     pkgs <- data.table::rbindlist(res, 
                                   fill = TRUE,
                                   use.names = TRUE, 
-                                  idcol = "r_repo") 
+                                  idcol = "r_repo")  
+    #### Check if none were found ####
     if(nrow(pkgs)==0) stopper("No packages found.")
     #### Filter packages ####
     if(!is.null(include)) pkgs <- pkgs[package %in% include,]

@@ -9,6 +9,8 @@
 #' step across.
 #' @param verbose Print messages.
 #' @inheritParams r_repos
+#' @inheritParams github_files
+#' @inheritParams description_extract
 #' @inheritParams BiocManager::repositories
 #' @returns data.table
 #' 
@@ -32,11 +34,12 @@ r_repos_data <- function(include=NULL,
                          add_github=FALSE,
                          which=r_repos_opts(),
                          cast=FALSE,
+                         fields=NULL,
                          version=NULL,
                          nThread=1,
-                         verbose=TRUE){
-    # templateR:::source_all()
-    # templateR:::args2vars(r_repos_data) 
+                         token=gh::gh_token(),
+                         verbose=TRUE){ 
+    # devoptera::args2vars(r_repos_data, reassign = TRUE)
     installed <- package <- NULL;
     
     if(isTRUE(add_github) && 
@@ -67,6 +70,7 @@ r_repos_data <- function(include=NULL,
     #### Add DESRIPTION metadata ####
     if(isTRUE(add_descriptions)){
         meta_desc <- description_extract_multi(pkgs = unique(pkgs$package),
+                                               fields = fields,
                                                nThread = nThread,
                                                verbose = verbose)
         by <- base::intersect(names(meta_desc),names(pkgs))
@@ -82,19 +86,29 @@ r_repos_data <- function(include=NULL,
             messager("Skipping add_github, as no owner/repo data available.",
                      v=verbose)
         } else {
-            meta_gh <- lapply(seq_len(nrow(pkgs)), function(i){
+            meta_gh <- lapply(unique(pkgs$package),
+                              function(p){
                 tryCatch({
-                    echogithub::github_metadata(owner = pkgs[i,]$owner,
-                                                repo = pkgs[i,]$repo,
-                                                add_traffic = TRUE,
-                                                verbose = verbose)
+                    pkgs_p <- pkgs[package==p,][1,]
+                    gm <- github_metadata(
+                        owner = pkgs_p$owner,
+                        repo = pkgs_p$repo,
+                        add_traffic = TRUE,
+                        token = token,
+                        verbose = verbose)
+                   if(is.null(gm)){
+                       return(data.table::data.table(package=p))
+                   } else {
+                       gm$package <- p
+                       return(gm)
+                   }
                 }, error=function(e){messager(e,v=verbose);NULL})
             }) |> data.table::rbindlist(fill = TRUE)
             by <- base::intersect(names(meta_gh),names(pkgs))
-            pkgs <- data.table::merge.data.table(meta_gh,
-                                                 pkgs,
+            pkgs <- data.table::merge.data.table(pkgs,
+                                                 meta_gh,
                                                  all = TRUE,
-                                                 by=by)
+                                                 by = by)
         } 
     }
     return(pkgs)

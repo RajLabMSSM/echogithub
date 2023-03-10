@@ -17,9 +17,18 @@ github_metadata <- function(owner,
                             add_traffic = FALSE, 
                             token = gh::gh_token(),
                             verbose = TRUE) { 
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_metadata)
     
+    #devoptera::args2vars(github_metadata)
+    if(is.null(owner) || is.na(owner)){
+        messager("owner is required to collect github_metadata. Skipping.",
+                 v=verbose)
+        return(NULL)
+    }
+    if(is.null(repo) || is.na(repo)){
+        messager("repo is required to collect github_metadata. Skipping.",
+                 v=verbose)
+        return(NULL)
+    }
     messager(paste0(
         "Gathering metadata",
         if(isTRUE(add_traffic))" (with traffic data)" else NULL

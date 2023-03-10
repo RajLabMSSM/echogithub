@@ -25,8 +25,8 @@ github_pages_vignettes <- function(owner,
                                    save_path = NULL,
                                    token = gh::gh_token(),
                                    verbose = FALSE){
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_pages_vignettes)
+    
+    #devoptera::args2vars(github_pages_vignettes)
     # repo <- c("echolocatoR","echodata"); owner <- "RajLabMSSM"
     
     path <- NULL;

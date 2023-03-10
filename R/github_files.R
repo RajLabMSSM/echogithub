@@ -53,8 +53,8 @@ github_files <- function(owner,
                          timeout = 5*60,
                          nThread = 1,
                          verbose = TRUE) {
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_files) 
+    
+    #devoptera::args2vars(github_files) 
     
     path <- link_raw <- path_local <- NULL; 
     #### Check args ####

@@ -1,3 +1,24 @@
+# echogithub 0.99.2
+
+## New features
+
+* Replace functions that have since been offloaded and improved in `rworkflows`
+    - `echogithub::description_find` --> `rworkflows::get_description`
+    - `echogithub::github_hex` --> `rworkflows::get_hex`
+    - `echogithub::readme_header` --> `rworkflows::use_badges`
+
+## Bug fixes
+
+* `github_dependents`
+    - Gather deps from all pages (not just the first one).
+* `description_authors`
+    - Fix to handle more complex situations 
+    without explicit naming of each field.
+* `r_repos_data`
+    - Add a check for find R packages that are on GitHub but just not available 
+    via `githubinstall` (which is a lot, since it became outdated years ago).
+    
+
 # echogithub 0.99.1
 
 ## New features

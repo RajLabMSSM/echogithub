@@ -16,8 +16,8 @@ github_traffic <- function(owner,
                            token = gh::gh_token(),
                            na_fill = NULL,
                            verbose = TRUE) {
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_traffic)
+    
+    #devoptera::args2vars(github_traffic)
     
     #### Check permissions ####
     ## Must have push access to repository

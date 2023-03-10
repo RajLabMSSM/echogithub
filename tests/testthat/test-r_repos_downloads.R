@@ -14,7 +14,7 @@ test_that("r_repos_downloads works", {
     
     #### From vector ####
     p <- "echolocatoR"
-    dt <- echogithub::description_extract(repo = p,
+    dt <- echogithub::description_extract(ref = p,
                                           fields = NULL,
                                           as_datatable = TRUE) |>
         data.table::setnames("Package","package")

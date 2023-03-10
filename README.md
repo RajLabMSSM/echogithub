@@ -1,15 +1,19 @@
-<img src='https://github.com/RajLabMSSM/echogithub/raw/master/inst/hex/hex.png' height='300'><br><br>
-[![R build
-status](https://github.com/RajLabMSSM/echogithub/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echogithub/actions)
-[![](https://img.shields.io/github/last-commit/RajLabMSSM/echogithub.svg)](https://github.com/RajLabMSSM/echogithub/commits/master)
-[![](https://app.codecov.io/gh/RajLabMSSM/echogithub/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echogithub)
+<img src='https://github.com/RajLabMSSM/echogithub/raw/master/inst/hex/hex.png' title='Hex sticker for echogithub' height='300'><br>
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-<h4>
-Authors: <i>Brian Schilder, Jack Humphrey, Towfique Raj</i>
+[![](https://img.shields.io/badge/devel%20version-0.99.2-black.svg)](https://github.com/RajLabMSSM/echogithub)
+[![](https://img.shields.io/github/languages/code-size/RajLabMSSM/echogithub.svg)](https://github.com/RajLabMSSM/echogithub)
+[![](https://img.shields.io/github/last-commit/RajLabMSSM/echogithub.svg)](https://github.com/RajLabMSSM/echogithub/commits/master)
+<br> [![R build
+status](https://github.com/RajLabMSSM/echogithub/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echogithub/actions)
+[![](https://codecov.io/gh/RajLabMSSM/echogithub/branch/master/graph/badge.svg)](https://codecov.io/gh/RajLabMSSM/echogithub)
+<br>
+<a href='https://app.codecov.io/gh/RajLabMSSM/echogithub/tree/master' target='_blank'><img src='https://codecov.io/gh/RajLabMSSM/echogithub/branch/master/graphs/icicle.svg' title='Codecov icicle graph' width='200' height='50' style='vertical-align: top;'></a>  
+<h4>  
+Authors: <i>Brian Schilder, Jack Humphrey, Towfique Raj</i>  
 </h4>
-<h5>
-README updated: <i>Nov-12-2022</i>
+<h5>  
+README updated: <i>Mar-10-2023</i>  
 </h5>
 
 ## `echogithub`: Extract data and metadata from GitHub.

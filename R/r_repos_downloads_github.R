@@ -1,5 +1,7 @@
 r_repos_downloads_github <- function(pkgs,
                                      fields=NULL, 
+                                     multi_repos=FALSE,
+                                     # Set to 2 for error messages in tryCatch
                                      verbose=TRUE){
     github_url <- username <- package_name <- 
         downloads <- clones_count <-  owner <- repo <- package <- NULL; 
@@ -13,27 +15,34 @@ r_repos_downloads_github <- function(pkgs,
     )[,github_url:=paste("https://github.com/",
                          username,package_name,sep="/")]
     #### Get owner/repo names for each package ####
-    pkgs2 <- lapply(pkgs$package, function(p){
+    pkgs2 <- lapply(stats::setNames(unique(pkgs$package),
+                                    unique(pkgs$package)),
+                    function(p){
         if(p %in% github$package_name){ 
             messager("Gathering GitHub downloads data with",
                      "githubinstall:",p,v=verbose)    
             github_i <- subset(github, package_name==p)
-            return(data.table::data.table(package=p,
-                                          owner=github_i$username,
-                                          repo=github_i$package_name))
+            ### Can sometimes returns multiple repos per package,
+            ### if the repo was renamed or transferred at some point 
+            dt_all <- data.table::data.table(package=p,
+                                   owner=github_i$username,
+                                   repo=github_i$package_name)
+            if(isFALSE(multi_repos)) dt_all <- dt_all[1,]
+            return(dt_all)
         } else {
             messager("Gathering GitHub downloads data with",
                      "echogithub:",p,v=verbose)    
             tryCatch({ 
-                description_extract(repo = p,
-                                    fields = fields,
-                                    as_datatable = TRUE,
-                                    verbose = FALSE) |>
-                    data.table::setnames("Package","package",
-                                         skip_absent = TRUE)
-            }, error=function(e){message(e);NULL})
+                (
+                    description_extract(ref = p,
+                                        fields = fields,
+                                        as_datatable = TRUE,
+                                        verbose = FALSE)
+                )
+            }, error=function(e){messager(e,v=verbose>1);NULL})
         } 
-    }) |> data.table::rbindlist(fill = TRUE)
+    }) |> data.table::rbindlist(fill = TRUE, use.names = TRUE,
+                                idcol = "package")
     #### Remove those without owner/repo data####
     if(!all(c("owner","repo") %in% names(pkgs2))){
         messager("No GitHub downloads data retreived.",v=verbose)
@@ -53,14 +62,14 @@ r_repos_downloads_github <- function(pkgs,
                                  verbose = verbose)
             if(!is.null(tr)) tr[,package:=(pkgs2[i,]$package)]
             return(tr)
-        }, error=function(e){messager(e,v=verbose); NULL})
+        }, error=function(e){messager(e,v=verbose>1); NULL})
     }) |> data.table::rbindlist(fill=TRUE)
     #### Check for empty data ####
     if(nrow(traffic)>0) {
         traffic[,downloads:=clones_count]
     } else {
         traffic <- null_dt
-    }  
+    }   
     #### Return ####
     return(traffic) 
 }

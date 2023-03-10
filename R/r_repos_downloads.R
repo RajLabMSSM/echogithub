@@ -26,7 +26,7 @@ r_repos_downloads <- function(pkgs=NULL,
                               nThread=1,
                               verbose=TRUE){ 
     # templateR:::source_all()
-    # templateR:::args2vars(r_repos_downloads)
+    # devoptera::args2vars(r_repos_downloads)
     
     #### Avoid connection errors ####
     # closeAllConnections() 
@@ -72,7 +72,6 @@ r_repos_downloads <- function(pkgs=NULL,
                by=c("r_repo","package")]
     #### Merge with input data ####
     by <- c("package","r_repo")
-    
     pkgs <- data.table::merge.data.table(pkgs,dat_agg,
                                          by=by[by %in% names(pkgs)],
                                          all.x = TRUE)

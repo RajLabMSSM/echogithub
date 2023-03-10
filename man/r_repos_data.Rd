@@ -11,8 +11,10 @@ r_repos_data(
   add_github = FALSE,
   which = r_repos_opts(),
   cast = FALSE,
+  fields = NULL,
   version = NULL,
   nThread = 1,
+  token = gh::gh_token(),
   verbose = TRUE
 )
 }
@@ -31,12 +33,18 @@ for each R package (if any exists).}
 \item{cast}{Cast the results to wide format
 so that each package only appears in one row.}
 
+\item{fields}{Fields to extract.}
+
 \item{version}{(Optional) \code{character(1)} or \code{package_version}
 indicating the \emph{Bioconductor} version (e.g., "3.8") for which
 repositories are required.}
 
 \item{nThread}{Number of threads to parallelise \code{add_descriptions} 
 step across.}
+
+\item{token}{GitHub Personal Authentication Token (PAT).
+See \href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token}{
+here for further instructions}.}
 
 \item{verbose}{Print messages.}
 }

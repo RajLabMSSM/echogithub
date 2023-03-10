@@ -3,21 +3,24 @@ get_github_url <- function(desc_file){
     ## Find the one that's actually for the GitHub repo.
     get_gh <- function(URL){
         urls <- trimws(strsplit(URL,",")[[1]])
-        grep("https://github.com", urls, value = TRUE)
+        (
+            grep("https://github.com", urls, value = TRUE)[1] |>
+                strsplit("#")
+        )[[1]][1]
     }
     #### Parse ####
-    if(length(grep("github",desc_file$URL))>0){ 
-        return(get_gh(desc_file$URL))
-    } else if (length(grep("github",desc_file$BugReports))>0){
+    if(desc_file$has_fields("URL")){ 
+        return(get_gh(desc_file$get_field("URL")))
+    } else if (desc_file$has_fields("BugReports")){
         return(
-            trimws(gsub("issues$","",get_gh(desc_file$BugReports)),
-                   whitespace = "/")
+            trimws(gsub("issues$","",get_gh(desc_file$get_field("BugReports"))),
+                   whitespace = "/") 
         )
-    } else if (!is.null(desc_file$git_url)){
+    } else if (desc_file$has_fields("git_url")){
         return(
             paste("https://github.com",
-                  strsplit(desc_file$git_url,"[.]")[[1]][[2]],
-                  basename(desc_file$git_url),sep="/")
+                  strsplit(desc_file$get_field("git_url"),"[.]")[[1]][[2]],
+                  basename(desc_file$get_field("git_url")),sep="/")
         ) 
     } else {
         return(NULL)

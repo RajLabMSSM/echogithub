@@ -1,7 +1,7 @@
 Package: echogithub
 Type: Package
 Title: echoverse module: Extract data and metadata from GitHub
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -33,20 +33,18 @@ Imports:
     gh,
     data.table,
     stringr,
-    testthat (>= 3.0.0),
     RCurl,
     rvest,
-    parallel
+    parallel,
+    rworkflows
 Suggests:
     markdown,
-    rmarkdown,
-    magick,
+    rmarkdown, 
+    testthat (>= 3.0.0),
     remotes,
     knitr,
     BiocStyle,
     covr,
-    badger,
-    hexSticker,
     httr, 
     BiocManager,
     githubinstall,

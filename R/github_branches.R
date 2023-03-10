@@ -22,7 +22,7 @@
 #'  (default: \code{FALSE}).
 #' @param error Throw an error when no matching branches are fond.
 #' @inheritParams github_files
-#' @inheritParams description_find
+#' @inheritParams description_extract
 #' @returns Character vector or \link[data.table]{data.table} of branches.
 #' 
 #' @export

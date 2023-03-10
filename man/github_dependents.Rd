@@ -3,8 +3,24 @@
 \name{github_dependents}
 \alias{github_dependents}
 \title{GitHub dependents}
+\source{
+\href{https://github.com/nvuillam/github-dependents-info}{
+github-dependents-info (python)}
+
+\href{https://github.com/manusa/github-dependents-scraper}{
+github-dependents-scraper (CLI)}
+
+\href{https://chat.openai.com/chat}{
+Made with a little help from ChatGPT}
+}
 \usage{
-github_dependents(owner, repo, token = gh::gh_token(), verbose = TRUE)
+github_dependents(
+  owner,
+  repo,
+  token = gh::gh_token(),
+  max_pages = 1000,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{owner}{Repo owner name
@@ -16,6 +32,8 @@ github_dependents(owner, repo, token = gh::gh_token(), verbose = TRUE)
 See \href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token}{
 here for further instructions}.}
 
+\item{max_pages}{The maximum number of pages to extract before stopping.}
+
 \item{verbose}{Print messages.}
 }
 \value{
@@ -24,6 +42,10 @@ A \link[data.table]{data.table}.
 \description{
 Get all GitHub repositories that are dependent on the target
  GitHub repository.
+\emph{NOTE: }
+The \href{https://docs.github.com/en/rest/dependency-graph}{GitHub API} 
+ does not currently support getting deps from repo, 
+ so need to use webscraping instead.
 }
 \examples{
 dt <- github_dependents(owner = "neurogenomics", 

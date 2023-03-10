@@ -6,7 +6,7 @@
 #' @export
 #' @examples 
 #' which <- r_repos_opts()
-r_repos_opts <- function(exclude="local"){
+r_repos_opts <- function(exclude=NULL){
     r_repos <- c("base","CRAN","Bioc",
                  "rOpenSci","Rforge","GitHub",
                  "local")

@@ -13,8 +13,8 @@ github_commits <- function(owner,
                            repo, 
                            token = gh::gh_token(),
                            verbose = TRUE) {
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_commits)
+    
+    #devoptera::args2vars(github_commits)
 
     endpoint <- paste("https://api.github.com","repos",
                       owner,repo,"commits",sep="/")

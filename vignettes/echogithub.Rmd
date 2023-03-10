@@ -117,44 +117,24 @@ toc <-  echogithub::github_pages_vignettes(owner = c("RajLabMSSM","neurogenomics
                                            as_toc = TRUE)
 ```
 
-# Hex stickers
-
-You can also search for hex stickers. This can be useful if you want to embed
-the URL in your README files, for example.
-By default, it will wrap the hex sticker URL in an HTML element 
-for easy embedding.
-
-```{r, results="asis"}
-hex <- echogithub::github_hex(owner ="RajLabMSSM", 
-                              repo = "echolocatoR",
-                              add_html = TRUE)
-cat(hex)
-```
-
 # *DESCRIPTION* files
 
 *DESCRIPTION* files contains essential information about each R package.
 However finding and importing them is not always straightforward 
 (e.g. when the package is not yet installed).
-`description_find` searches a variety of sources 
+`echogithub::description_extract` searches a variety of sources 
 (e.g. local files, local installations, GitHub) to find the correct 
-*DESCRIPTION* file and import it into the easy-to-use `packageDescription` format.
+*DESCRIPTION* file and import it into the easy-to-use `description` format.
 
-## Find 
-
-```{r}
-desc_file <- echogithub::description_find(owner = "RajLabMSSM", 
-                                          repo = "echolocatoR")
-methods::show(desc_file)
-```
-
-## Extract
+It then parses it to extract the relevant information.
+ 
+## Find and extract
 
 `description_extract` then takes that object and extracts and parses
 just the fields you need, returning them as a named list.
 
 ```{r}
-res <- echogithub::description_extract(desc_file = desc_file)
+res <- echogithub::description_extract(ref = "RajLabMSSM/echolocatoR")
 methods::show(res)
 ```
 

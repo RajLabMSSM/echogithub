@@ -15,8 +15,8 @@ github_dependencies <- function(owner,
                                 repo, 
                                 token = gh::gh_token(),
                                 verbose = TRUE) {
-    # echoverseTemplate:::source_all()
-    # echoverseTemplate:::args2vars(github_insights) 
+    
+    #devoptera::args2vars(github_insights) 
     
     requireNamespace("rvest")
     type <- NULL;

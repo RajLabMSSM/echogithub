@@ -6,8 +6,9 @@
 \usage{
 description_extract(
   desc_file = NULL,
-  repo = NULL,
+  ref = NULL,
   fields = c("owner", "repo", "authors"),
+  names_only = TRUE,
   add_html = FALSE,
   as_datatable = FALSE,
   verbose = TRUE
@@ -15,13 +16,18 @@ description_extract(
 }
 \arguments{
 \item{desc_file}{When \code{owner} or \code{repo} are NULL, 
-these arguments are inferred from the \emph{DESCRIPTION} file.
-If a  \emph{DESCRIPTION} file cannot be found in the current working directory, 
-it then searches for one in the remote GitHub repository.}
+these arguments are inferred from the \emph{DESCRIPTION} file.}
 
-\item{repo}{GitHub repository name.}
+\item{ref}{Reference for a GitHub repository. If \code{NULL}
+(the default), the reference is determined by the URL
+field in the DESCRIPTION file.}
 
 \item{fields}{Fields to extract.}
+
+\item{names_only}{Only return author names (and not other subfields).
+For example:
+"Jim Hester \<james.f.hester\@gmail.com\> \[aut\]" would become
+"Jim Hester".}
 
 \item{add_html}{Add HTML styling to certain fields (e.g "authors").}
 
@@ -37,7 +43,5 @@ Extract information from an R package's DESCRIPTION file.
 }
 \examples{
  
-\dontrun{
-res <- description_extract(repo="echolocatoR")
-}
+res <- description_extract(ref="RajLabMSSM/echolocatoR")
 }
