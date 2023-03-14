@@ -16,8 +16,7 @@ test_that("r_repos_downloads works", {
     p <- "echolocatoR"
     dt <- echogithub::description_extract(ref = p,
                                           fields = NULL,
-                                          as_datatable = TRUE) |>
-        data.table::setnames("Package","package")
+                                          as_datatable = TRUE) 
     pkgs3 <- r_repos_downloads(pkgs = dt)
     run_tests(pkgs=dt,
               pkgs_out = pkgs3) 
