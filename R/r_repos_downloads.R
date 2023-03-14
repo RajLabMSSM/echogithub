@@ -25,7 +25,6 @@ r_repos_downloads <- function(pkgs=NULL,
                               use_cache=TRUE,
                               nThread=1,
                               verbose=TRUE){ 
-    # templateR:::source_all()
     # devoptera::args2vars(r_repos_downloads)
     
     #### Avoid connection errors ####
@@ -71,7 +70,11 @@ r_repos_downloads <- function(pkgs=NULL,
     dat_agg <- dat[,list(downloads=sum(downloads)),
                by=c("r_repo","package")]
     #### Merge with input data ####
-    by <- c("package","r_repo")
+    by <- c("package","r_repo") 
+    #### Remove dup cols ####
+    for(x in names(pkgs)[duplicated(names(pkgs))]){
+        pkgs[[x]] <- NULL
+    }
     pkgs <- data.table::merge.data.table(pkgs,dat_agg,
                                          by=by[by %in% names(pkgs)],
                                          all.x = TRUE)

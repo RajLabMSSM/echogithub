@@ -30,7 +30,7 @@ github_metadata <- function(owner,
         return(NULL)
     }
     messager(paste0(
-        "Gathering metadata",
+        "Gathering GitHub metadata",
         if(isTRUE(add_traffic))" (with traffic data)" else NULL
     ),"for repo:",paste(owner,repo,sep="/"),v=verbose)
     endpoint <- paste("https://api.github.com","repos",

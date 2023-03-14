@@ -9,6 +9,8 @@ r_repos_data(
   add_downloads = FALSE,
   add_descriptions = FALSE,
   add_github = FALSE,
+  add_hex = FALSE,
+  hex_path = "inst/hex/hex.png",
   which = r_repos_opts(),
   cast = FALSE,
   fields = NULL,
@@ -27,6 +29,11 @@ r_repos_data(
 
 \item{add_github}{Add metadata from the respective GitHub repository 
 for each R package (if any exists).}
+
+\item{add_hex}{Search for hex sticker URLs for each package.
+If the link does not exist, returns \code{NA}.}
+
+\item{hex_path}{Path to hex sticker file.}
 
 \item{which}{Which R repositories to extract data from.}
 
@@ -60,10 +67,11 @@ Gather data on which repositories R packages are distributed through
 pkgs1 <- r_repos_data()
 #### Specific packages ####
 #### Add extra data ####
-pkgs3 <- r_repos_data(include="echogithub",
+pkgs2 <- r_repos_data(include=c("echogithub","echodeps","BiocManager"),
                       which = r_repos_opts(exclude = NULL),
                       add_downloads = TRUE,
                       add_descriptions = TRUE,
                       add_github = TRUE,
-                      cast=TRUE)
+                      add_hex = TRUE,
+                      cast = TRUE)
 }

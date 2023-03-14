@@ -76,9 +76,10 @@ r_repos_list <- function(which,
         missing_pkgs <- include[!include %in% unique(github$package_name)]
         if(length(missing_pkgs)>0){
             messager("Gathering R packages: GitHub+",v=verbose)
-            d <- description_extract_multi(pkgs = missing_pkgs,
-                                           fields = c("Package","github_url"),
-                                           verbose = verbose)
+            d <- description_extract(refs = missing_pkgs,
+                                     fields = c("Package","github_url"),
+                                     as_datatable = TRUE,
+                                     verbose = verbose)
             d <- d[is.character(github_url) & (!is.na(github_url)),]  
             if(nrow(d)>0){
                 gh_res <- rbind(

@@ -7,6 +7,7 @@
 #' @param desc_file When \code{owner} or \code{repo} are NULL, 
 #' these arguments are inferred from the \emph{DESCRIPTION} file.
 #' @inheritParams rworkflows::get_description
+#' @inheritDotParams rworkflows::get_description
 #' @inheritParams github_files
 #' @inheritParams description_authors
 #' @returns A named list or \link[data.table]{data.table}.
@@ -15,83 +16,44 @@
 #' @importFrom rworkflows get_description
 #' @importFrom data.table as.data.table
 #' @examples  
-#' res <- description_extract(ref="RajLabMSSM/echolocatoR")
+#' res <- description_extract(refs="RajLabMSSM/echolocatoR")
 description_extract <- function(desc_file = NULL,
-                                ref = NULL,
+                                refs = NULL,
                                 fields = c("owner",
                                            "repo",
                                            "authors"),
                                 names_only = TRUE,
                                 add_html = FALSE,
                                 as_datatable = FALSE, 
-                                verbose = TRUE){ 
+                                nThread = 1,
+                                verbose = TRUE,
+                                ...){ 
     
-    # devoptera::args2vars(description_extract)
-    #### Find or read DESCRIPTION file ####
-    if(is.null(desc_file)){
-        desc_file <- rworkflows::get_description(ref = ref,
-                                                 path = desc_file)
+    # devoptera::args2vars(description_extract) 
+    
+    refs <- check_pkgs(pkgs = refs)    
+    if(length(refs)==0 && is.null(desc_file)){
+        messager("Must supply either refs or desc_file.",
+                 "Returning NULL.",v=verbose)
+        return(NULL)
     }
-    force(desc_file)
-    all_fields <- unique(c("owner","repo","authors","github_url",
-                           desc_file$fields()))
-    if(is.null(desc_file)) {
-        stopper("desc_file is required for description_extract")
-    }
-    if(is.null(fields)) { 
-        fields <- all_fields
+    dl <- rworkflows::get_description(refs = refs$package, 
+                                      paths = desc_file,
+                                      verbose = verbose,
+                                      ...)
+    meta_desc <- lapply(dl, function(desc_file){
+        description_extract_i(desc_file= desc_file,
+                              fields = fields,
+                              as_datatable = TRUE,
+                              verbose = FALSE)
+    })  |>
+        data.table::rbindlist(fill = TRUE, use.names = TRUE, idcol = "package")   
+    if(nrow(meta_desc)==0){
+        messager("WARNING: No metadata retrieved from any DESCRIPTION files.",
+                 v=verbose)
+    } else {
+        if("repo" %in% names(meta_desc)) data.table::setkeyv(meta_desc,"repo")
     } 
-    fields <- unique(fields)
-    fields <- fields[fields %in% all_fields]
-    #### Check package name ####
-    if(!desc_file$has_fields("Package")){
-        messager("WARNING:","Package field is missing from DECRIPTION.")
-    } else {
-        pkg <- desc_file$get_field("Package")
-    }
-     
-    #### Extract info ####
-    messager("Extracting",length(fields),"DESCRIPTION field(s)",
-             "for the package:",pkg,v=verbose)
-    res <- lapply(stats::setNames(fields,
-                                  fields), 
-                  function(f){
-        # messager("Inferring",f,"from DESCRIPTION file.",v=verbose)
-        #### Check fields ####
-        if(f %in% author_fields()) {
-            authors <- description_authors(desc_file = desc_file,
-                                           add_html = add_html, 
-                                           names_only = names_only) 
-            return(authors)
-        } else if(desc_file$has_fields(f)){
-            return(desc_file$get_field(f))
-        } else if(f=="github_url"){
-            gh_url <- get_github_url(desc_file = desc_file)
-            return(gh_url)
-        } else if(f=="owner"){
-            gh_url <- get_github_url(desc_file = desc_file)
-            if(is.null(gh_url)) {
-                return(NULL)
-            } else {
-                return(
-                    strsplit(gsub("https://github.com/","",gh_url),"/")[[1]][1]
-                )
-            }  
-        } else if(f=="repo"){
-            gh_url <- get_github_url(desc_file = desc_file)
-            if(is.null(gh_url)) {
-                return(NULL)
-            } else {
-                return(
-                    strsplit(gsub("https://github.com/","",gh_url),"/")[[1]][2]
-                )
-            }  
-        } 
-    })
-    #### Return ####
-    if(isTRUE(as_datatable)){
-        return(data.table::as.data.table(res))
-    } else {
-        return(res)
-    }
+    return(meta_desc)
+   
 }

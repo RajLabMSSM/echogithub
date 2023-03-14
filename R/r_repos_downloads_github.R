@@ -10,39 +10,44 @@ r_repos_downloads_github <- function(pkgs,
                                       downloads=NA)
     if(nrow(pkgs)==0) return(null_dt)
     #### Gather pre-computed GitHub info (from circa 2018) ####
-    github <- (githubinstall::gh_list_packages() |> 
+    ghinstall <- (githubinstall::gh_list_packages() |> 
                    data.table::data.table()
     )[,github_url:=paste("https://github.com/",
                          username,package_name,sep="/")]
-    #### Get owner/repo names for each package ####
-    pkgs2 <- lapply(stats::setNames(unique(pkgs$package),
-                                    unique(pkgs$package)),
-                    function(p){
-        if(p %in% github$package_name){ 
-            messager("Gathering GitHub downloads data with",
-                     "githubinstall:",p,v=verbose)    
-            github_i <- subset(github, package_name==p)
-            ### Can sometimes returns multiple repos per package,
-            ### if the repo was renamed or transferred at some point 
-            dt_all <- data.table::data.table(package=p,
-                                   owner=github_i$username,
-                                   repo=github_i$package_name)
-            if(isFALSE(multi_repos)) dt_all <- dt_all[1,]
-            return(dt_all)
-        } else {
-            messager("Gathering GitHub downloads data with",
-                     "echogithub:",p,v=verbose)    
-            tryCatch({ 
-                (
-                    description_extract(ref = p,
-                                        fields = fields,
-                                        as_datatable = TRUE,
-                                        verbose = FALSE)
-                )
-            }, error=function(e){messager(e,v=verbose>1);NULL})
+    ghinstall[,repo:=basename(github_url)]
+    #### Get owner/repo names #### 
+    #### Method 1: githubinstall ####
+    ## Pre-compiled list of GitHub repos for each R package
+    if(any(pkgs$package %in% ghinstall$package_name)){ 
+        messager("Gathering GitHub downloads data with",
+                 "githubinstall.",v=verbose)     
+        ghinstall <- ghinstall[package_name %in% pkgs$package,
+                             c("package_name","username","repo")]
+        data.table::setnames(ghinstall,
+                             c("package_name","username"),
+                             c("package","owner")) 
+        ### Can sometimes returns multiple repos per package,
+        ### if the repo was renamed or transferred at some point  
+        if(isFALSE(multi_repos)) {
+            ghinstall <- ghinstall[,utils::head(.SD, 1), by="package"]
         } 
-    }) |> data.table::rbindlist(fill = TRUE, use.names = TRUE,
-                                idcol = "package")
+    } else{
+        ghinstall <- data.table::data.table()
+    }
+    #### Method 2: echogithub ####
+    ## Get remaining repos through DESCRIPTION file search
+    if(!any(pkgs$package %in% ghinstall$package)){
+        messager("Gathering GitHub downloads data with",
+                 "echogithub",v=verbose)    
+        echogh <- description_extract(refs = pkgs$package,
+                                      fields = fields,
+                                      as_datatable = TRUE,
+                                      verbose = FALSE)
+    } else {
+        echogh <- data.table::data.table()
+    }
+    #### Combine methods ####
+    pkgs2 <- data.table::rbindlist(list(ghinstall,echogh), fill = TRUE)
     #### Remove those without owner/repo data####
     if(!all(c("owner","repo") %in% names(pkgs2))){
         messager("No GitHub downloads data retreived.",v=verbose)

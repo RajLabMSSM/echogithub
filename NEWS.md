@@ -6,6 +6,8 @@
     - `echogithub::description_find` --> `rworkflows::get_description`
     - `echogithub::github_hex` --> `rworkflows::get_hex`
     - `echogithub::readme_header` --> `rworkflows::use_badges`
+* `r_repos_data`
+    - Add new arg `add_hex` to find hex URL with `rworkflows::get_hex`.
 
 ## Bug fixes
 

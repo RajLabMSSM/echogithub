@@ -6,21 +6,23 @@
 \usage{
 description_extract(
   desc_file = NULL,
-  ref = NULL,
+  refs = NULL,
   fields = c("owner", "repo", "authors"),
   names_only = TRUE,
   add_html = FALSE,
   as_datatable = FALSE,
-  verbose = TRUE
+  nThread = 1,
+  verbose = TRUE,
+  ...
 )
 }
 \arguments{
 \item{desc_file}{When \code{owner} or \code{repo} are NULL, 
 these arguments are inferred from the \emph{DESCRIPTION} file.}
 
-\item{ref}{Reference for a GitHub repository. If \code{NULL}
-(the default), the reference is determined by the URL
-field in the DESCRIPTION file.}
+\item{refs}{Reference for one or more GitHub repository in owner/repo format
+ (e.g.\code{"neurogenomics/rworkflows"}), or an R package name 
+(e.g. \code{"rworkflows"}).}
 
 \item{fields}{Fields to extract.}
 
@@ -33,7 +35,21 @@ For example:
 
 \item{as_datatable}{Convert the results into a \link[data.table]{data.table}.}
 
+\item{nThread}{Number of threads to parallelize queries/downloads across.}
+
 \item{verbose}{Print messages.}
+
+\item{...}{
+  Arguments passed on to \code{\link[rworkflows:get_description]{rworkflows::get_description}}
+  \describe{
+    \item{\code{paths}}{Paths to \emph{DESCRIPTION} file(s)  R package(s).}
+    \item{\code{cache_dir}}{Directory where to cache downloaded files.}
+    \item{\code{force_new}}{Ignore cached files and re-download them instead.}
+    \item{\code{use_wd}}{Search the local working directory (and the one above it)
+for \emph{DESCRIPTION} files.}
+    \item{\code{use_repos}}{Use R standard R package repositories like CRAN and Bioc
+to find \emph{DESCRIPTION} files.}
+  }}
 }
 \value{
 A named list or \link[data.table]{data.table}.
@@ -43,5 +59,5 @@ Extract information from an R package's DESCRIPTION file.
 }
 \examples{
  
-res <- description_extract(ref="RajLabMSSM/echolocatoR")
+res <- description_extract(refs="RajLabMSSM/echolocatoR")
 }

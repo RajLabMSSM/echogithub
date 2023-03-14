@@ -134,7 +134,9 @@ It then parses it to extract the relevant information.
 just the fields you need, returning them as a named list.
 
 ```{r}
-res <- echogithub::description_extract(ref = "RajLabMSSM/echolocatoR")
+res <- echogithub::description_extract(refs = c("RajLabMSSM/echolocatoR",
+                                                "RajLabMSSM/echogithub",
+                                                "RajLabMSSM/rworkflows"))
 methods::show(res)
 ```
 
@@ -149,5 +151,5 @@ utils::sessionInfo()
 
 </details>  
 
-<br>
+<hr>
 
