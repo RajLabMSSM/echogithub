@@ -27,5 +27,9 @@ r_repos_data_cast <- function(pkgs,
             value.var = "dummy") 
         pkgs[,(r_repo_vars):=lapply(.SD, as.logical),.SDcols=r_repo_vars]
     }
+    #### Sort pkg stats ####
+    if("total_downloads" %in% names(pkgs)){
+        data.table::setorderv(pkgs,cols = "total_downloads",order = -1)   
+    }
     return(pkgs)
 }

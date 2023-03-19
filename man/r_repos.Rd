@@ -12,6 +12,7 @@ r_repos(
   add_github = FALSE,
   upset_plot = TRUE,
   show_plot = TRUE,
+  queries = r_repos_upset_queries(which = which, upset_plot = upset_plot),
   save_path = tempfile(fileext = "upsetr.pdf"),
   height = 7,
   width = 10,
@@ -37,6 +38,12 @@ for each R package (if any exists).}
 showing R package overlap between repositories.}
 
 \item{show_plot}{Print the plot.}
+
+\item{queries}{Unified query of intersections, elements, and custom row functions. Entered as a list that contains a list of
+queries. query is the type of query being conducted. params are the parameters of the query (if any). color is the color of the points on the
+plot that will represent the query. If no color is selected one will be provided automatically. active takes TRUE or FALSE, and if
+TRUE, it will overlay the bars present  with the results from the query. If FALSE a tick mark will indicate the intersection size.
+See examples section on how to do this.}
 
 \item{save_path}{Path to save upset plot to.}
 

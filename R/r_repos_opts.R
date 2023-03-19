@@ -8,7 +8,7 @@
 #' which <- r_repos_opts()
 r_repos_opts <- function(exclude=NULL){
     r_repos <- c("base","CRAN","Bioc",
-                 "rOpenSci","Rforge","GitHub",
+                 "rOpenSci","R-Forge","GitHub",
                  "local")
     r_repos[!r_repos %in% exclude]
 }

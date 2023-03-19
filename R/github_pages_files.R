@@ -7,11 +7,14 @@
 #' @param local_repo Search a cloned local folder of a git repo instead of 
 #' the remote GitHub repo. If not \code{NULL}, expects a path to the local repo.
 #' @inheritParams github_files
+#' @inheritParams gh::gh
 #' 
 #' @export
 #' @importFrom data.table := fwrite data.table
-#' @examples 
-#' dt <- github_pages_files(owner="RajLabMSSM", repo="echolocatoR")
+#' @examples
+#' dt <- github_pages_files(owner="RajLabMSSM",
+#'                          repo="echolocatoR", 
+#'                          .limit=5)
 github_pages_files <- function(owner,
                                repo,
                                branch = "gh-pages",
@@ -20,6 +23,7 @@ github_pages_files <- function(owner,
                                local_repo = NULL,
                                save_path = NULL,
                                token = gh::gh_token(),
+                               .limit = Inf,
                                verbose = TRUE) { 
     
     link_ghpages_index <- link_ghpages <- link_html <- path <- NULL;
@@ -35,6 +39,7 @@ github_pages_files <- function(owner,
                            query = query,
                            branch = branch, 
                            token = token,
+                           .limit = .limit,
                            verbose = verbose)
     } else {
         dt <- data.table::data.table(

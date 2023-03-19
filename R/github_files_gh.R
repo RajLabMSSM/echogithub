@@ -1,11 +1,12 @@
 #' List files in GitHub repo: via \pkg{gh}
 #'
 #' Search for files within a public GitHub repository and return their paths.
-#' @inheritParams github_files
 #' @source \href{https://docs.github.com/en/rest/overview/endpoints-available-for-github-apps}{
 #' GitHub endpoints}
 #' @source \href{https://docs.github.com/en/rest/git/trees#get-a-tree-recursively}{
 #' GitHub trees API}
+#' @inheritParams github_files
+#' @inheritParams gh::gh
 #' @returns A \link[data.table]{data.table} fo file paths. 
 #'
 #' @keywords internal
@@ -15,6 +16,7 @@ github_files_gh <- function(owner,
                             repo,
                             branch = c("master","main"),
                             token = gh::gh_token(), 
+                            .limit = Inf,
                             verbose = TRUE) {
     path <- link <- NULL;
     
@@ -29,6 +31,7 @@ github_files_gh <- function(owner,
     )
     gh_response <- gh::gh(endpoint = endpoint,
                           .token = token,
+                          .limit = .limit,
                           per_page = 100) 
     dt <- gh_to_dt(gh_response$tree)
     dt[,link:=paste("https://github.com",owner,repo,

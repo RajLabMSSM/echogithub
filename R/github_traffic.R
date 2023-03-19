@@ -3,6 +3,7 @@
 #' Get traffic info on a target GitHub repository.
 #' @param na_fill Value to fill NAs with.
 #' @inheritParams github_files 
+#' @inheritParams gh::gh
 #' @return A \link[data.table]{data.table}.
 #'
 #' @export
@@ -14,6 +15,7 @@
 github_traffic <- function(owner,
                            repo, 
                            token = gh::gh_token(),
+                           .limit = Inf,
                            na_fill = NULL,
                            verbose = TRUE) {
     
@@ -38,7 +40,7 @@ github_traffic <- function(owner,
                       owner,repo,"traffic","clones",sep="/")
     ghr_clones <- gh::gh(endpoint = endpoint,
                           .token = token,
-                          .limit = Inf,
+                          .limit = .limit,
                           per_page = 100)
     clones <- data.table::data.table(
         clones_count=ghr_clones$count,

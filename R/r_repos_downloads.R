@@ -11,7 +11,7 @@
 #' 
 #' @export
 #' @importFrom data.table rbindlist data.table setnames dcast merge.data.table
-#' @importFrom data.table :=
+#' @importFrom data.table := setorderv
 #' @examples 
 #' #### All packages ####
 #' pkgs_all <- r_repos_downloads(which = "Bioc")
@@ -78,5 +78,7 @@ r_repos_downloads <- function(pkgs=NULL,
     pkgs <- data.table::merge.data.table(pkgs,dat_agg,
                                          by=by[by %in% names(pkgs)],
                                          all.x = TRUE)
+    #### Sort pkg stats ####
+    data.table::setorderv(pkgs,cols = "downloads",order = -1)
     return(pkgs) 
 }

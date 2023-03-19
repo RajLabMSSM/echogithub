@@ -16,10 +16,11 @@
 #' @param width Saved plot width.
 #' @param nThread Number of threads to parallelise data queries across.
 #' @inheritParams BiocManager::repositories
+#' @inheritParams UpSetR::upset
 #' @returns Named list.
 #' 
 #' @export
-#' @importFrom data.table data.table
+#' @importFrom data.table data.table setorderv
 #' @examples 
 #' report <- r_repos()
 r_repos <- function(which=r_repos_opts(),
@@ -29,11 +30,14 @@ r_repos <- function(which=r_repos_opts(),
                     add_github=FALSE,
                     upset_plot=TRUE,
                     show_plot=TRUE,
-                    save_path=tempfile(fileext = "upsetr.pdf"),
+                    queries = r_repos_upset_queries(which = which, 
+                                                    upset_plot = upset_plot),
+                    save_path = tempfile(fileext = "upsetr.pdf"),
                     height=7,
                     width=10,
                     nThread=1,
                     verbose=TRUE){
+    # devoptera::args2vars(r_repos)
     
     if(isTRUE(upset_plot)) requireNamespace("UpSetR")
     total <- percent_all <- percent_exclusive <-
@@ -58,10 +62,7 @@ r_repos <- function(which=r_repos_opts(),
                                sets.bar.color = "slategrey",
                                main.bar.color = "slategrey",
                                text.scale = 1.5, 
-                               queries = list(list(query = UpSetR::intersects, 
-                                                   params = list("GitHub"),
-                                                   color = "darkred", 
-                                                   active = TRUE))
+                               queries = queries
         ) 
         upset_data <- upset$data 
         #### Compute percentages ####
@@ -74,6 +75,8 @@ r_repos <- function(which=r_repos_opts(),
         )[,percent_all:=(
             count_all/total*100)][,percent_exclusive:=(
                 count_exclusive/total*100)]
+        #### Sort repo stats ####
+        data.table::setorderv(repo_stats,cols = "count_all",order = -1)
         #### Return ####
         return(list(pkgs=pkgs, 
                     repo_stats=repo_stats,

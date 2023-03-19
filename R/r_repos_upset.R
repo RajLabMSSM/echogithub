@@ -5,6 +5,7 @@ r_repos_upset <- function(pkgs,
                           width=10,
                           verbose = TRUE,
                           ...){
+    # devoptera::args2vars(r_repos_upset)
     requireNamespace("UpSetR")
     if(!is.null(save_path)) requireNamespace("grDevices")
     r_repo <- NULL;

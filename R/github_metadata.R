@@ -4,6 +4,7 @@
 #' @param add_traffic Add traffic metadata 
 #' with \link[echogithub]{github_traffic}.
 #' @inheritParams github_files 
+#' @inheritParams gh::gh
 #' @return A \link[data.table]{data.table}.
 #'
 #' @export
@@ -16,6 +17,7 @@ github_metadata <- function(owner,
                             repo, 
                             add_traffic = FALSE, 
                             token = gh::gh_token(),
+                            .limit = Inf,
                             verbose = TRUE) { 
     
     #devoptera::args2vars(github_metadata)
@@ -37,6 +39,7 @@ github_metadata <- function(owner,
                       owner,repo,sep="/")
     gh_response <- gh::gh(endpoint = endpoint,
                           .token = token, 
+                          .limit = .limit,
                           per_page = 100)
     dt <- cbind(
         owner=owner,

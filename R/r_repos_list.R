@@ -5,7 +5,7 @@ r_repos_list <- function(which,
     
     package <- installed <- github_url <- NULL;
     
-    which <- tolower(which)
+    which <- gsub("-","",tolower(which))
     res <- list()
     #### Base R ####
     if("base" %in% which){

@@ -31,6 +31,7 @@
 #' @param verbose Print messages.
 #' @inheritParams github_files_download
 #' @inheritParams base::grepl
+#' @inheritParams gh::gh
 #'
 #' @return A list of paths.
 #'
@@ -47,6 +48,7 @@ github_files <- function(owner,
                          ignore.case = FALSE,
                          method = "gh", 
                          token = gh::gh_token(),
+                         .limit = Inf,
                          download = FALSE,
                          download_dir = tempdir(),
                          overwrite = FALSE,
@@ -77,6 +79,7 @@ github_files <- function(owner,
                               repo = repo,
                               branch = branch,
                               token = token,
+                              .limit = .limit,
                               verbose = verbose)
     } 
     #### Return NULL early ####

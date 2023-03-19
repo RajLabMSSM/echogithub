@@ -5,6 +5,7 @@
 #' @param error Throw an error when the GitHub repository does not exist 
 #' (default: \code{TRUE}).
 #' @inheritParams github_files
+#' @inheritParams gh::gh
 #' 
 #' @export
 #' @importFrom gh gh gh_token
@@ -15,6 +16,7 @@ github_pages <- function(owner,
                          repo,
                          error = TRUE,
                          token = gh::gh_token(),
+                         .limit = Inf,
                          verbose = TRUE){
     
     endpoint <- paste("https://api.github.com","repos",
@@ -22,6 +24,7 @@ github_pages <- function(owner,
     res <- tryCatch({
         gh::gh(endpoint = endpoint,
                .token = token,
+               .limit = .limit,
                per_page = 100)
     }, error = function(e){return(e)})
     #### Stop if the repo doesn't exist #####

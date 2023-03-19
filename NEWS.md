@@ -8,6 +8,11 @@
     - `echogithub::readme_header` --> `rworkflows::use_badges`
 * `r_repos_data`
     - Add new arg `add_hex` to find hex URL with `rworkflows::get_hex`.
+* `r_repos`
+    - New arg `queries`
+* New functions:
+    - `github_user_events`
+* Expose `.limit` arg wherever relevant.
 
 ## Bug fixes
 
