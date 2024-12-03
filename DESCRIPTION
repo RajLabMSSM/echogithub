@@ -1,7 +1,7 @@
 Package: echogithub
 Type: Package
 Title: echoverse module: Extract data and metadata from GitHub
-Version: 0.99.2
+Version: 0.99.3
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -17,7 +17,12 @@ Authors@R:
            family = "Raj",
            role = c("aut"),
            email = "towfique.raj@mssm.edu",
-           comment = c(ORCID = "0000-0002-9355-5704"))
+           comment = c(ORCID = "0000-0002-9355-5704")),
+    person(given = "Hiranyamaya",
+           family = "Dash",
+           role = c("ctb"),
+           email = "hdash.work@gmail.com",
+           comment = c(ORCID = "0009-0005-5514-505X"))
            ) 
 Description: echoverse module: Extract data and metadata from GitHub.
 URL: https://github.com/RajLabMSSM/echogithub
@@ -56,7 +61,7 @@ Suggests:
 Remotes:
     github::neurogenomics/cranlogs,
     github::neurogenomics/rworkflows
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3
