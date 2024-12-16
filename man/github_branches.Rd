@@ -17,24 +17,24 @@ github_branches(
 )
 }
 \arguments{
-\item{owner}{Owner of the GitHub repository. 
+\item{owner}{Owner of the GitHub repository.
 If \code{NULL}, will automatically try to infer the owner
  name from the \emph{DESCRIPTION file}
  (assuming you're working directory is a local R package repo).}
 
-\item{repo}{GitHub repository name. 
+\item{repo}{GitHub repository name.
 If \code{NULL}, will automatically try to infer the repo name
  name from the \emph{DESCRIPTION file}
  (assuming you're working directory is a local R package repo).}
 
-\item{branch}{[Optional] If \code{branch} is supplied 
-(as a character vector of one or more branch names), 
+\item{branch}{[Optional] If \code{branch} is supplied
+(as a character vector of one or more branch names),
 will check to see if that branch exists. If it does, only that branch will
 be returned. If it doesn't, an error will be thrown.}
 
 \item{master_or_main}{If \code{branch} is supplied and
  is either \code{"master"} or \code{"main"},
-automatically interpret "master" and "main" as synonymous and return 
+automatically interpret "master" and "main" as synonymous and return
 whichever branch exists.}
 
 \item{as_datatable}{Return the results as a \link[data.table]{data.table}

@@ -1,3 +1,11 @@
+# echogithub 0.99.3
+
+## Bug fixes
+
+* `github_branches`
+    - Handle repos with more than 100 branches.
+
+
 # echogithub 0.99.2
 
 ## New features
