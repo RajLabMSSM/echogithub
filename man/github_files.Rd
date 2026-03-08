@@ -31,7 +31,7 @@ github_files(
 
 \item{query}{Regex query to filter files by.}
 
-\item{ignore.case}{if \code{FALSE}, the pattern matching is \emph{case
+\item{ignore.case}{logical. if \code{FALSE}, the pattern matching is \emph{case
       sensitive} and if \code{TRUE}, case is ignored during matching.}
 
 \item{method}{Method to perform queries with:

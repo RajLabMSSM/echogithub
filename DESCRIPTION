@@ -61,7 +61,7 @@ Suggests:
 Remotes:
     github::neurogenomics/cranlogs,
     github::neurogenomics/rworkflows
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3

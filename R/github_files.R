@@ -86,9 +86,9 @@ github_files <- function(owner,
     if(is.null(dt)) return(NULL)
     #### Add download link ####
     dt[,link_raw:=paste(
-        "https://github.com", owner, repo, "raw",
-        branch, path, sep="/"
-    )] 
+        "https://raw.githubusercontent.com",
+        owner,repo,branch,path, sep="/")
+       ] 
     #### Unlist cols ####
     unlist_dt(dt = dt, 
               exclude = "size",

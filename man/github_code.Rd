@@ -34,6 +34,6 @@ Search for GitHub code using specific queries.
 \examples{
 \dontrun{
 ## easily exceeds API limit
-repos <- github_code(query="Package path:DESCRIPTION", .limit=5)
+repos <- github_code(query="Package: path:DESCRIPTION", .limit=5)
 }
 }

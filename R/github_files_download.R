@@ -15,12 +15,15 @@
 #'                    query = ".md$")
 #' filelist_local <- github_files_download(filelist = dt$link_raw)
 github_files_download <- function(filelist,
+                                  token = gh::gh_token(),
                                   download_dir = tempdir(),
                                   overwrite = FALSE,
                                   timeout = 5*60,
                                   nThread = 1,
                                   verbose = TRUE) {
+    # devoptera::args2vars(github_files_download)
     
+    options(timeout = timeout)
     messager("+ Downloading", length(filelist), "files.", v = verbose)
     local_files <- parallel::mclapply(stats::setNames(filelist,
                                                       filelist), 
@@ -40,9 +43,21 @@ github_files_download <- function(filelist,
         )
         if (!file.exists(destfile) &
             isFALSE(overwrite)) {
-            messager(paste("Downloading:", x),v=verbose)
-            options(timeout = timeout)
-            utils::download.file(url = x, 
+            messager("Downloading:",x,v=verbose)
+            #### Add token to header ####
+            extra <- getOption("download.file.extra")
+            if(!is.null(token)) { 
+                extra <- c(extra, "--fail", "-L")
+                headers <- c(Authorization = paste("token", token))
+                qh <- shQuote(paste0(names(headers), ": ", headers))
+                extra <- c(extra, paste("-H", qh))
+            }  
+            #### Download ####
+            utils::download.file(url = x,
+                                 method = "curl",
+                                 quiet = verbose<2,
+                                 mode = "wb",
+                                 extra = extra,
                                  destfile = destfile)
         } else {
             messager("Returning pre-existing file:",x,v=verbose)

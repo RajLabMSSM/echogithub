@@ -4,7 +4,8 @@
 
 * `github_branches`
     - Handle repos with more than 100 branches.
-
+* `github_files_download`
+    - Can now download files in private repos.
 
 # echogithub 0.99.2
 

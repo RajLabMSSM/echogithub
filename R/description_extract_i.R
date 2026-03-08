@@ -9,6 +9,9 @@ description_extract_i <- function(desc_file = NULL,
                                   verbose = TRUE){
     #### Find or read DESCRIPTION file ####
     
+    get_github_url_desc <- utils::getFromNamespace("get_github_url_desc",
+                                                   ns = "rworkflows")
+    
     if(is.null(desc_file)) {
         messager("desc_file is required for description_extract.",
                  "Returning NULL.",v=verbose)
@@ -45,10 +48,10 @@ description_extract_i <- function(desc_file = NULL,
       } else if(desc_file$has_fields(f)){
           return(desc_file$get_field(f))
       } else if(f=="github_url"){
-          gh_url <- get_github_url(desc_file = desc_file)
+          gh_url <- get_github_url_desc(desc_file = desc_file)
           return(gh_url)
       } else if(f=="owner"){
-          gh_url <- get_github_url(desc_file = desc_file)
+          gh_url <- get_github_url_desc(desc_file = desc_file)
           if(is.null(gh_url)) {
               return(NULL)
           } else {
@@ -57,7 +60,7 @@ description_extract_i <- function(desc_file = NULL,
               )
           }  
       } else if(f=="repo"){
-          gh_url <- get_github_url(desc_file = desc_file)
+          gh_url <- get_github_url_desc(desc_file = desc_file)
           if(is.null(gh_url)) {
               return(NULL)
           } else {

@@ -6,6 +6,7 @@
 \usage{
 github_files_download(
   filelist,
+  token = gh::gh_token(),
   download_dir = tempdir(),
   overwrite = FALSE,
   timeout = 5 * 60,
@@ -15,6 +16,10 @@ github_files_download(
 }
 \arguments{
 \item{filelist}{A list of remote URLs to download from GitHub.}
+
+\item{token}{GitHub Personal Authentication Token (PAT).
+See \href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token}{
+here for further instructions}.}
 
 \item{download_dir}{Directory to download files into.}
 

@@ -14,21 +14,22 @@
 #' @examples
 #' \dontrun{
 #' ## easily exceeds API limit
-#' repos <- github_code(query="Package path:DESCRIPTION", .limit=5)
+#' repos <- github_code(query="Package: path:DESCRIPTION", .limit=5)
 #' }
 github_code <- function(query,
                         token = gh::gh_token(),
                         .limit = Inf,
                         verbose = TRUE){
+    # devoptera::args2vars(github_code) 
     owner_repo <- repo <- NULL;
     
-    endpoint <- "https://api.github.com/search/code"
+    endpoint <- "https://api.github.com/search/code" 
     res <-  gh::gh(endpoint,
                    .token = token,
                    .limit = .limit,
                    q = query,
                    #### only beta version supports full-on regex ####
-                   # q = "/(?-i)Package/ path:/(?-i)^DESCRIPTION$/", 
+                   # q = "/(?-i)Package:/ path:/(?-i)^DESCRIPTION$/",
                    per_page = 100)  
     dt <- gh_to_dt(gh_response = res$items,
                    verbose = verbose)
