@@ -1,3 +1,19 @@
+# echogithub 0.99.4
+
+## New features
+
+* New function `github_dependents_scrape`.
+* New function `sourcegraph_code`.
+* Standardize `rworkflows.yml` with canonical template:
+  enable Docker on `ghcr.io`, set `write-all` permissions,
+  use `GITHUB_TOKEN`, add `devel`/`RELEASE_**` branch triggers.
+
+## Bug fixes
+
+* Remove deprecated `get_github_url`.
+* Refactor `github_dependents` and update `github_files_download`.
+* Sync documentation with `devtools::document()`.
+
 # echogithub 0.99.3
 
 ## Bug fixes

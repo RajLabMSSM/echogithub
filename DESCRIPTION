@@ -1,7 +1,7 @@
 Package: echogithub
 Type: Package
 Title: echoverse module: Extract data and metadata from GitHub
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
