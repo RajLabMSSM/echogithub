@@ -64,6 +64,7 @@ A named list or \link[data.table]{data.table}.
 Extract information from an R package's DESCRIPTION file.
 }
 \examples{
- 
+\dontrun{
 res <- description_extract(refs="RajLabMSSM/echolocatoR")
+}
 }

@@ -25,6 +25,8 @@ A \link[data.table]{data.table}.
 Get permissions metadat on a GitHub repository.
 }
 \examples{
-permissions <- github_permissions(owner="RajLabMSSM", 
+\dontrun{
+permissions <- github_permissions(owner="RajLabMSSM",
                                   repo="echolocatoR")
+}
 }

@@ -63,6 +63,7 @@ Gather data on which repositories R packages are distributed through
  (e.g. CRAN, Bioc, rOpenSci, and/or GitHub).
 }
 \examples{
+\dontrun{
 #### All packages ####
 pkgs1 <- r_repos_data()
 #### Specific packages ####
@@ -74,4 +75,5 @@ pkgs2 <- r_repos_data(include=c("echogithub","echodeps","BiocManager"),
                       add_github = TRUE,
                       add_hex = TRUE,
                       cast = TRUE)
+}
 }

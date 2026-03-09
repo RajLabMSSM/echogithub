@@ -10,8 +10,10 @@
 #' @importFrom data.table data.table setnafill
 #' @importFrom gh gh gh_token
 #' @examples
-#' dt <- github_traffic(owner="RajLabMSSM", 
+#' \dontrun{
+#' dt <- github_traffic(owner="RajLabMSSM",
 #'                      repo="echolocatoR")
+#' }
 github_traffic <- function(owner,
                            repo, 
                            token = gh::gh_token(),

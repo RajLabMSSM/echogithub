@@ -9,8 +9,10 @@
 #' @importFrom data.table data.table 
 #' @importFrom stringr str_split
 #' @examples
-#' dt <- github_dependencies(owner = "neurogenomics", 
+#' \dontrun{
+#' dt <- github_dependencies(owner = "neurogenomics",
 #'                           repo = "rworkflows")
+#' }
 github_dependencies <- function(owner,
                                 repo, 
                                 token = gh::gh_token(),
@@ -70,10 +72,13 @@ github_dependencies <- function(owner,
             d)  
     }) |> data.table::rbindlist(fill = TRUE) 
     #### Add owner/repo for each action ####
-    dt <- cbind(dt,
-          data.table::data.table(
-              stringr::str_split(dt$action,"/", simplify = TRUE)
-          )|> `colnames<-`(c("owner","repo")))
+    if(nrow(dt) > 0 && "action" %in% names(dt)){
+        split_mat <- stringr::str_split(dt$action, "/", simplify = TRUE)
+        dt[, c("owner","repo") := list(
+            if(ncol(split_mat) >= 1) split_mat[, 1] else NA_character_,
+            if(ncol(split_mat) >= 2) split_mat[, 2] else NA_character_
+        )]
+    }
     ## Unsure why some rows have the branch name instead of a number.
     #### Report ####
     messager("Found",formatC(nrow(dt),big.mark = ","),

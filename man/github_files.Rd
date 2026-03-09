@@ -35,7 +35,7 @@ github_files(
       sensitive} and if \code{TRUE}, case is ignored during matching.}
 
 \item{method}{Method to perform queries with:
-\itemize{
+\describe{
 \item{"gh"}{Uses the R package \pkg{gh}. 
 Uses GitHub token to avoid query limits.}
 \item{"httr"}{Uses the R package \pkg{httr}.
@@ -81,7 +81,9 @@ GitHub token is supplied to the \code{token} argument, or is saved as in your
 \emph{~.Renviron} file, e.g.: \code{GITHUB_TOKEN=<token_here>}
 }
 \examples{
-files <- github_files(owner = "RajLabMSSM", 
+\dontrun{
+files <- github_files(owner = "RajLabMSSM",
                       repo = "Fine_Mapping_Shiny",
                       query = ".md$")
+}
 }

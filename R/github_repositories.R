@@ -23,7 +23,9 @@
 #' @importFrom data.table :=
 #' @importFrom methods is
 #' @examples
+#' \dontrun{
 #' repos <- github_repositories(query="language:r", .limit=100)
+#' }
 github_repositories <- function(query,
                                 token = gh::gh_token(),
                                 .limit = Inf,

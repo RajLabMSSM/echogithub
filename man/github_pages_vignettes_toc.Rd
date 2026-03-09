@@ -4,7 +4,7 @@
 \alias{github_pages_vignettes_toc}
 \title{GitHub Pages: Table of Contents}
 \usage{
-github_pages_vignettes_toc(vdt, bullet1 = "🦇")
+github_pages_vignettes_toc(vdt, bullet1 = "*")
 }
 \value{
 HTML character string.

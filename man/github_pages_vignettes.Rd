@@ -51,6 +51,8 @@ here for further instructions}.}
 List all GitHub Pages vignettes for one or more GitHub repository.
 }
 \examples{
-vdt <- github_pages_vignettes(owner = "RajLabMSSM", 
+\dontrun{
+vdt <- github_pages_vignettes(owner = "RajLabMSSM",
                               repo = c("echolocatoR","echodata"))
+}
 }

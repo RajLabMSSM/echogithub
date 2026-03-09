@@ -49,5 +49,7 @@ long time.}
 Search for GitHub repositories using specific queries.
 }
 \examples{
+\dontrun{
 repos <- github_repositories(query="language:r", .limit=100)
+}
 }

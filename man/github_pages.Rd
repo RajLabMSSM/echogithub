@@ -42,6 +42,8 @@ Return the \href{https://pages.github.com/}{GitHub Pages} website URL
 for a given repository, if one exists.
 }
 \examples{
+\dontrun{
 link <- github_pages(owner="RajLabMSSM",
                      repo="echolocatoR")
+}
 }

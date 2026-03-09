@@ -13,8 +13,10 @@
 #' @importFrom data.table rbindlist :=
 #' @importFrom stats setNames
 #' @examples
-#' vdt <- github_pages_vignettes(owner = "RajLabMSSM", 
+#' \dontrun{
+#' vdt <- github_pages_vignettes(owner = "RajLabMSSM",
 #'                               repo = c("echolocatoR","echodata"))
+#' }
 github_pages_vignettes <- function(owner,
                                    repo,
                                    as_toc = FALSE,

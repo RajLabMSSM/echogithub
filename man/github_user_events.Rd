@@ -48,5 +48,7 @@ Return all events (e.g. commits, pull requests, comments, etc.)
 for a GitHub user across all repositories.
 }
 \examples{
+\dontrun{
 events <- github_user_events(owner="bschilder", .limit=100)
+}
 }

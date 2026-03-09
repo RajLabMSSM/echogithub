@@ -21,7 +21,8 @@
 #' @importFrom utils installed.packages available.packages
 #' @importFrom data.table merge.data.table := fcoalesce
 #' @importFrom rworkflows get_hex
-#' @examples 
+#' @examples
+#' \dontrun{
 #' #### All packages ####
 #' pkgs1 <- r_repos_data()
 #' #### Specific packages ####
@@ -33,6 +34,7 @@
 #'                       add_github = TRUE,
 #'                       add_hex = TRUE,
 #'                       cast = TRUE)
+#' }
 r_repos_data <- function(include=NULL,
                          add_downloads=FALSE,
                          add_descriptions=FALSE,

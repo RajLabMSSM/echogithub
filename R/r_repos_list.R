@@ -66,25 +66,45 @@ r_repos_list <- function(which,
         res[["R-Forge"]] <- data.table::data.table(package=rownames(rforge))
     }
     #### GitHub ####
-    if("github" %in% which){  
-        requireNamespace("githubinstall")
+    if("github" %in% which){
         messager("Gathering R packages: GitHub",v=verbose)
-        # githubinstall::gh_update_package_list()
-        github <- githubinstall::gh_list_packages() 
-        gh_res <- data.table::data.table(package=github$package_name)
-        ## Check for any that are indeed on github but not in githubinstall.
-        missing_pkgs <- include[!include %in% unique(github$package_name)]
-        if(length(missing_pkgs)>0){
-            messager("Gathering R packages: GitHub+",v=verbose)
-            d <- description_extract(refs = missing_pkgs,
-                                     fields = c("Package","github_url"),
-                                     as_datatable = TRUE,
-                                     verbose = verbose)
-            d <- d[is.character(github_url) & (!is.na(github_url)),]  
-            if(nrow(d)>0){
-                gh_res <- rbind(
-                    gh_res,
-                    data.table::data.table(package=d$package))
+        if(requireNamespace("githubinstall", quietly = TRUE)){
+            # githubinstall::gh_update_package_list()
+            github <- githubinstall::gh_list_packages()
+            gh_res <- data.table::data.table(package=github$package_name)
+            ## Check for any that are indeed on github but not in githubinstall.
+            missing_pkgs <- include[!include %in% unique(github$package_name)]
+            if(length(missing_pkgs)>0){
+                messager("Gathering R packages: GitHub+",v=verbose)
+                d <- description_extract(refs = missing_pkgs,
+                                         fields = c("Package","github_url"),
+                                         as_datatable = TRUE,
+                                         verbose = verbose)
+                d <- d[is.character(github_url) & (!is.na(github_url)),]
+                if(nrow(d)>0){
+                    gh_res <- rbind(
+                        gh_res,
+                        data.table::data.table(package=d$package))
+                }
+            }
+        } else {
+            messager("WARNING: 'githubinstall' package not available.",
+                     "Skipping GitHub repository listing.",v=verbose)
+            gh_res <- data.table::data.table(package=character(0))
+            ## Try to get packages from DESCRIPTION files if include is given
+            if(!is.null(include) && length(include) > 0){
+                messager("Gathering R packages: GitHub (via DESCRIPTION)",
+                         v=verbose)
+                d <- description_extract(refs = include,
+                                         fields = c("Package","github_url"),
+                                         as_datatable = TRUE,
+                                         verbose = verbose)
+                if("github_url" %in% names(d)){
+                    d <- d[is.character(github_url) & (!is.na(github_url)),]
+                    if(nrow(d)>0){
+                        gh_res <- data.table::data.table(package=d$package)
+                    }
+                }
             }
         }
         res[["GitHub"]] <- gh_res

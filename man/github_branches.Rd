@@ -59,5 +59,7 @@ Character vector or \link[data.table]{data.table} of branches.
 List all branches for a given GitHub repository.
 }
 \examples{
+\dontrun{
 branches <- github_branches(owner="RajLabMSSM", repo="echolocatoR")
+}
 }

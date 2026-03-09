@@ -26,6 +26,8 @@ Get all GitHub repositories that are dependent on the target
  GitHub repository.
 }
 \examples{
-dt <- github_dependencies(owner = "neurogenomics", 
+\dontrun{
+dt <- github_dependencies(owner = "neurogenomics",
                           repo = "rworkflows")
+}
 }

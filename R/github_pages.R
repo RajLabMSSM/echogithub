@@ -10,8 +10,10 @@
 #' @export
 #' @importFrom gh gh gh_token
 #' @examples
+#' \dontrun{
 #' link <- github_pages(owner="RajLabMSSM",
 #'                      repo="echolocatoR")
+#' }
 github_pages <- function(owner, 
                          repo,
                          error = TRUE,

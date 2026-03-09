@@ -1,5 +1,7 @@
 test_that("r_repos_downloads works", {
-  
+
+    testthat::skip_if_not_installed("cranlogs")
+
     run_tests <- function(pkgs,
                           pkgs_out){
         testthat::expect_true(all(pkgs$package %in% pkgs_out$package))

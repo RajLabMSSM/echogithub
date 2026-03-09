@@ -14,6 +14,7 @@
 #' @param verbose Print messages.
 #' @param height Saved plot height.
 #' @param width Saved plot width.
+#' @param queries A list of query specifications for the upset plot.
 #' @param nThread Number of threads to parallelise data queries across.
 #' @inheritParams BiocManager::repositories
 #' @inheritParams UpSetR::upset
@@ -21,8 +22,10 @@
 #' 
 #' @export
 #' @importFrom data.table data.table setorderv
-#' @examples 
+#' @examples
+#' \dontrun{
 #' report <- r_repos()
+#' }
 r_repos <- function(which=r_repos_opts(),
                     version=NULL,
                     add_downloads=FALSE,

@@ -17,7 +17,9 @@
 #' @importFrom data.table :=
 #' @importFrom methods is
 #' @examples
+#' \dontrun{
 #' events <- github_user_events(owner="bschilder", .limit=100)
+#' }
 github_user_events <- function(owner,  
                                error = TRUE,
                                token = gh::gh_token(),

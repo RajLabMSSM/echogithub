@@ -38,5 +38,7 @@ This includes the "conclusion" columns showing whether
 the workflow is currently passing.
 }
 \examples{
+\dontrun{
 dt <- github_workflows(owner="neurogenomics", repo="orthogene")
+}
 }

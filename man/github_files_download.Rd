@@ -37,8 +37,10 @@ Download files from GitHub, e.g. those that have been found with
 \link[echogithub]{github_files}.
 }
 \examples{
+\dontrun{
 dt <- github_files(owner = "RajLabMSSM",
                    repo = "Fine_Mapping_Shiny",
                    query = ".md$")
 filelist_local <- github_files_download(filelist = dt$link_raw)
+}
 }

@@ -1,5 +1,7 @@
 test_that("r_repos_data works", {
-  
+
+    testthat::skip_if_not_installed("cranlogs")
+
     include <- c('echogithub', 'stats','gh','data.table')
     pkgs <- r_repos_data(include = include, 
                          add_downloads = TRUE, 

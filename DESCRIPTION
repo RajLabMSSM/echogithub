@@ -1,7 +1,8 @@
 Package: echogithub
 Type: Package
-Title: echoverse module: Extract data and metadata from GitHub
-Version: 0.99.4
+Title: Echoverse Module: Extract Data and Metadata from GitHub
+Version: 0.99.5
+Date: 2026-03-08
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -24,7 +25,7 @@ Authors@R:
            email = "hdash.work@gmail.com",
            comment = c(ORCID = "0009-0005-5514-505X"))
            ) 
-Description: echoverse module: Extract data and metadata from GitHub.
+Description: Echoverse module: Extract data and metadata from GitHub.
 URL: https://github.com/RajLabMSSM/echogithub
 BugReports: https://github.com/RajLabMSSM/echogithub/issues
 Encoding: UTF-8

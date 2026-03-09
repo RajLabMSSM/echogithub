@@ -11,8 +11,10 @@
 #' @importFrom data.table as.data.table   
 #' @importFrom gh gh gh_token
 #' @examples
-#' dt <- github_metadata(owner="RajLabMSSM", 
+#' \dontrun{
+#' dt <- github_metadata(owner="RajLabMSSM",
 #'                       repo="echolocatoR")
+#' }
 github_metadata <- function(owner,
                             repo, 
                             add_traffic = FALSE, 

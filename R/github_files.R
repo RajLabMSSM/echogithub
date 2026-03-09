@@ -12,7 +12,7 @@
 #' @param branch Which branch to search.
 #' @param query Regex query to filter files by.
 #' @param method Method to perform queries with:
-#' \itemize{
+#' \describe{
 #' \item{"gh"}{Uses the R package \pkg{gh}. 
 #' Uses GitHub token to avoid query limits.}
 #' \item{"httr"}{Uses the R package \pkg{httr}.
@@ -38,9 +38,11 @@
 #' @export
 #' @importFrom data.table := 
 #' @examples
-#' files <- github_files(owner = "RajLabMSSM", 
+#' \dontrun{
+#' files <- github_files(owner = "RajLabMSSM",
 #'                       repo = "Fine_Mapping_Shiny",
 #'                       query = ".md$")
+#' }
 github_files <- function(owner,
                          repo,
                          branch = c("master"),

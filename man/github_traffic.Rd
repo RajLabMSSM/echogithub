@@ -43,6 +43,8 @@ A \link[data.table]{data.table}.
 Get traffic info on a target GitHub repository.
 }
 \examples{
-dt <- github_traffic(owner="RajLabMSSM", 
+\dontrun{
+dt <- github_traffic(owner="RajLabMSSM",
                      repo="echolocatoR")
+}
 }

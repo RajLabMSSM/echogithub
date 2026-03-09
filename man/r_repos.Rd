@@ -39,6 +39,8 @@ showing R package overlap between repositories.}
 
 \item{show_plot}{Print the plot.}
 
+\item{queries}{A list of query specifications for the upset plot.}
+
 \item{save_path}{Path to save upset plot to.}
 
 \item{height}{Saved plot height.}
@@ -57,5 +59,7 @@ Report on which repositories R packages are distributed through
  (i.e. base R, CRAN, Bioc, rOpenSci, R-Forge, and/or GitHub).
 }
 \examples{
+\dontrun{
 report <- r_repos()
+}
 }

@@ -1,3 +1,8 @@
+# echogithub 0.99.5
+
+## Bug fixes
+* Local R CMD check fixes and compatibility updates.
+
 # echogithub 0.99.4
 
 ## New features

@@ -10,8 +10,7 @@
 #' github-dependents-info (python)}
 #' @source \href{https://github.com/manusa/github-dependents-scraper}{
 #' github-dependents-scraper (CLI)}
-#' @source \href{https://chat.openai.com/chat}{
-#' Made with a little help from ChatGPT}
+#' @source Made with a little help from ChatGPT.
 #' @param max_pages The maximum number of pages to extract before stopping.
 #' @inheritParams github_files 
 #' @return A \link[data.table]{data.table}.
@@ -20,8 +19,10 @@
 #' @importFrom data.table data.table := 
 #' @importFrom stringr str_split
 #' @examples
-#' dt <- github_dependents(owner = "neurogenomics", 
+#' \dontrun{
+#' dt <- github_dependents(owner = "neurogenomics",
 #'                         repo = "rworkflows")
+#' }
 github_dependents <- function(owner,
                               repo, 
                               token = gh::gh_token(),

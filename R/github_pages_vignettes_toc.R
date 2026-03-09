@@ -9,7 +9,7 @@
 #' @keywords internal
 #' @importFrom stats setNames
 github_pages_vignettes_toc <- function(vdt,
-                                       bullet1="\U0001F987"){ 
+                                       bullet1="*"){
     
     owner <- repo <- owner_repo <- NULL;
     #### Create TOC ####

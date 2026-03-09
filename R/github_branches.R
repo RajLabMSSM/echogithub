@@ -28,7 +28,9 @@
 #' @export
 #' @importFrom gh gh_token gh
 #' @examples
+#' \dontrun{
 #' branches <- github_branches(owner="RajLabMSSM", repo="echolocatoR")
+#' }
 github_branches <- function(owner = NULL,
                             repo = NULL,
                             branch = NULL,

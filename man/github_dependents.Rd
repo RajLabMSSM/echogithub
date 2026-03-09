@@ -10,8 +10,7 @@ github-dependents-info (python)}
 \href{https://github.com/manusa/github-dependents-scraper}{
 github-dependents-scraper (CLI)}
 
-\href{https://chat.openai.com/chat}{
-Made with a little help from ChatGPT}
+Made with a little help from ChatGPT.
 }
 \usage{
 github_dependents(
@@ -48,6 +47,8 @@ The \href{https://docs.github.com/en/rest/dependency-graph}{GitHub API}
  so need to use webscraping instead.
 }
 \examples{
-dt <- github_dependents(owner = "neurogenomics", 
+\dontrun{
+dt <- github_dependents(owner = "neurogenomics",
                         repo = "rworkflows")
+}
 }

@@ -1,5 +1,9 @@
 test_that("r_repos works", {
-  
+
+    testthat::skip_if_not_installed("githubinstall")
+    testthat::skip_if_not_installed("UpSetR")
+    testthat::skip_if_not_installed("BiocManager")
+
     #### Setup ####
     save_path <- tempfile(fileext = c("upset.pdf","upset.png")) 
     run_tests <- function(report,

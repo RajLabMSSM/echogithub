@@ -44,6 +44,8 @@ A \link[data.table]{data.table}.
 Get metadata on a GitHub repository.
 }
 \examples{
-dt <- github_metadata(owner="RajLabMSSM", 
+\dontrun{
+dt <- github_metadata(owner="RajLabMSSM",
                       repo="echolocatoR")
+}
 }

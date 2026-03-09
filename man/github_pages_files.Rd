@@ -54,7 +54,9 @@ long time.}
 Find html files on GitHub Pages.
 }
 \examples{
+\dontrun{
 dt <- github_pages_files(owner="RajLabMSSM",
-                         repo="echolocatoR", 
+                         repo="echolocatoR",
                          .limit=5)
+}
 }

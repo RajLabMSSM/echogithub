@@ -10,10 +10,12 @@
 #' @importFrom parallel mclapply
 #' @importFrom utils download.file 
 #' @examples
+#' \dontrun{
 #' dt <- github_files(owner = "RajLabMSSM",
 #'                    repo = "Fine_Mapping_Shiny",
 #'                    query = ".md$")
 #' filelist_local <- github_files_download(filelist = dt$link_raw)
+#' }
 github_files_download <- function(filelist,
                                   token = gh::gh_token(),
                                   download_dir = tempdir(),

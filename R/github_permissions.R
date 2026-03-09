@@ -8,8 +8,10 @@
 #' @importFrom data.table as.data.table   
 #' @importFrom gh gh gh_token
 #' @examples
-#' permissions <- github_permissions(owner="RajLabMSSM", 
+#' \dontrun{
+#' permissions <- github_permissions(owner="RajLabMSSM",
 #'                                   repo="echolocatoR")
+#' }
 github_permissions <- function(owner,
                                repo, 
                                token = gh::gh_token(),

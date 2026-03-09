@@ -28,5 +28,7 @@ Named list of query parameters
 Function to generate queries passed to .
 }
 \examples{
+\dontrun{
 queries <- r_repos_upset_queries(which=NULL)
+}
 }

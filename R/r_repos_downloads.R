@@ -12,7 +12,8 @@
 #' @export
 #' @importFrom data.table rbindlist data.table setnames dcast merge.data.table
 #' @importFrom data.table := setorderv
-#' @examples 
+#' @examples
+#' \dontrun{
 #' #### All packages ####
 #' pkgs_all <- r_repos_downloads(which = "Bioc")
 #'
@@ -20,6 +21,7 @@
 #' pkgs <- r_repos_data()[r_repo=="CRAN",][seq_len(5),]
 #' pkgs2 <- r_repos_downloads(pkgs = pkgs,
 #'                            which = c("CRAN","Bioc"))
+#' }
 r_repos_downloads <- function(pkgs=NULL,
                               which=r_repos_opts(),
                               use_cache=TRUE,

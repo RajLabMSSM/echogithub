@@ -8,9 +8,11 @@
 #' @export 
 #' @importFrom gh gh gh_token
 #' @examples
-#' commits <- github_commits(owner="RajLabMSSM", 
+#' \dontrun{
+#' commits <- github_commits(owner="RajLabMSSM",
 #'                           repo="echolocatoR",
-#'                           limit=100)
+#'                           .limit=100)
+#' }
 github_commits <- function(owner,
                            repo, 
                            token = gh::gh_token(),

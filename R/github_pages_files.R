@@ -12,9 +12,11 @@
 #' @export
 #' @importFrom data.table := fwrite data.table
 #' @examples
+#' \dontrun{
 #' dt <- github_pages_files(owner="RajLabMSSM",
-#'                          repo="echolocatoR", 
+#'                          repo="echolocatoR",
 #'                          .limit=5)
+#' }
 github_pages_files <- function(owner,
                                repo,
                                branch = "gh-pages",

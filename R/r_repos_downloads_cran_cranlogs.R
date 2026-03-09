@@ -21,7 +21,7 @@ r_repos_downloads_cran_cranlogs <- function(pkgs,
         }, mc.cores = nThread) |> 
             data.table::rbindlist(fill = TRUE)
     } else {
-        requireNamespace("cranlogs") 
+        requireNamespace("cranlogs", quietly = TRUE)
         #### Get downloads data for each batch #### 
         pkgs <- pkgs[package!="R",]
         cran <- cranlogs::cran_downloads(packages = pkgs$package, 

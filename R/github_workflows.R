@@ -11,8 +11,10 @@
 #' @export
 #' @importFrom gh gh gh_token
 #' @importFrom data.table .SD rbindlist setnames
-#' @examples 
+#' @examples
+#' \dontrun{
 #' dt <- github_workflows(owner="neurogenomics", repo="orthogene")
+#' }
 github_workflows <- function(owner,
                              repo,
                              token = gh::gh_token(),

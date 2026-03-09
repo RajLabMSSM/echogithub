@@ -33,6 +33,7 @@ Get the total number of downloads for each R package in
 CRAN, Bioconductor, and/or GitHub.
 }
 \examples{
+\dontrun{
 #### All packages ####
 pkgs_all <- r_repos_downloads(which = "Bioc")
 
@@ -40,4 +41,5 @@ pkgs_all <- r_repos_downloads(which = "Bioc")
 pkgs <- r_repos_data()[r_repo=="CRAN",][seq_len(5),]
 pkgs2 <- r_repos_downloads(pkgs = pkgs,
                            which = c("CRAN","Bioc"))
+}
 }

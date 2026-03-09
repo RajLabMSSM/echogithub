@@ -15,8 +15,10 @@
 #' @export
 #' @importFrom rworkflows get_description
 #' @importFrom data.table as.data.table
-#' @examples  
+#' @examples
+#' \dontrun{
 #' res <- description_extract(refs="RajLabMSSM/echolocatoR")
+#' }
 description_extract <- function(desc_file = NULL,
                                 refs = NULL,
                                 fields = c("owner",

@@ -17,6 +17,20 @@ unlist_dt <- function(dt,
     cols <- cols[!cols %in% exclude]
     if(length(cols)>0){
         messager("Unlisting",length(cols),"column(s).",v=verbose)
-        dt[ , (cols) := lapply(.SD,unlist), .SDcols = cols]
-    } 
+        nr <- nrow(dt)
+        for(col in cols){
+            vals <- unlist(dt[[col]])
+            if(length(vals) == nr){
+                data.table::set(dt, j = col, value = vals)
+            } else {
+                ## If lengths don't match after unlisting, keep only first
+                ## element per row to avoid recycling errors.
+                vals2 <- vapply(dt[[col]], function(x){
+                    x2 <- unlist(x)
+                    if(length(x2) == 0) NA_character_ else as.character(x2[[1]])
+                }, FUN.VALUE = character(1))
+                data.table::set(dt, j = col, value = vals2)
+            }
+        }
+    }
 }

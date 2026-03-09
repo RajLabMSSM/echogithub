@@ -7,8 +7,10 @@
 #' @returns Named list of query parameters
 #' 
 #' @export
-#' @examples 
+#' @examples
+#' \dontrun{
 #' queries <- r_repos_upset_queries(which=NULL)
+#' }
 r_repos_upset_queries <- function(which,
                                   upset_plot = TRUE,
                                   highlight=list("GitHub"),

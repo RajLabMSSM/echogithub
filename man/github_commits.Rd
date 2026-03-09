@@ -40,7 +40,9 @@ A nested list of metadata
 Get metadata for all commits to a given GitHub repo.
 }
 \examples{
-commits <- github_commits(owner="RajLabMSSM", 
+\dontrun{
+commits <- github_commits(owner="RajLabMSSM",
                           repo="echolocatoR",
-                          limit=100)
+                          .limit=100)
+}
 }
