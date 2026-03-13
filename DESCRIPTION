@@ -61,7 +61,8 @@ Suggests:
     BiocPkgTools
 Remotes:
     github::neurogenomics/cranlogs,
-    github::neurogenomics/rworkflows
+    github::neurogenomics/rworkflows,
+    github::hoxo-m/githubinstall
 RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 License: GPL-3
