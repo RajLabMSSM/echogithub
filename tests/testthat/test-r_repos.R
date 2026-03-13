@@ -2,6 +2,9 @@ test_that("r_repos works", {
 
     testthat::skip_if_offline()
     testthat::skip_on_cran()
+    ## Heavy test that queries CRAN, Bioc, and GitHub APIs;
+    ## rate-limited on GHA shared runners.
+    testthat::skip_on_ci()
     testthat::skip_if_not_installed("githubinstall")
     testthat::skip_if_not_installed("UpSetR")
     testthat::skip_if_not_installed("BiocManager")

@@ -2,6 +2,8 @@ test_that("r_repos_downloads works", {
 
     testthat::skip_if_offline()
     testthat::skip_on_cran()
+    ## CRAN download logs API is rate-limited on GHA shared runners
+    testthat::skip_on_ci()
     testthat::skip_if_not_installed("cranlogs")
 
     run_tests <- function(pkgs,
