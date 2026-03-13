@@ -8,7 +8,7 @@ GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-pro
 status](https://github.com/RajLabMSSM/echogithub/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echogithub/actions)
 [![](https://app.codecov.io/gh/RajLabMSSM/echogithub/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echogithub)
 <br>
-<a href='https://app.codecov.io/gh/RajLabMSSM/echogithub/tree/master' target='_blank'><img src='https://app.codecov.io/gh/RajLabMSSM/echogithub/branch/master/graphs/icicle.svg' title='Codecov icicle graph' width='200' height='50' style='vertical-align: top;'></a>  
+<a href='https://app.codecov.io/gh/RajLabMSSM/echogithub/tree/master' target='_blank'><img src='https://codecov.io/gh/RajLabMSSM/echogithub/branch/master/graphs/icicle.svg' title='Codecov icicle graph' width='200' height='50' style='vertical-align: top;'></a>  
 <h4>  
 Authors: <i>Brian Schilder, Jack Humphrey, Towfique Raj, Hiranyamaya
 Dash</i>  
