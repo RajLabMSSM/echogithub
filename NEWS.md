@@ -1,3 +1,13 @@
+# echogithub 1.0.0
+
+## Bug fixes
+
+* Fix data.table recycling warning in `r_repos_data`.
+* Remove `data.table::setDTthreads(threads = 1)` from `.onLoad()` that
+  silently throttled data.table performance for the entire R session.
+* Fix Rd formatting and `\dontrun{}` example guards.
+* Add `Rplots.pdf` and `*.tbi` to `.gitignore`.
+
 # echogithub 0.99.5
 
 ## Bug fixes
