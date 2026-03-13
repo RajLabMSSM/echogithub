@@ -1,5 +1,7 @@
 test_that("r_repos_downloads works", {
 
+    testthat::skip_if_offline()
+    testthat::skip_on_cran()
     testthat::skip_if_not_installed("cranlogs")
 
     run_tests <- function(pkgs,
@@ -12,14 +14,14 @@ test_that("r_repos_downloads works", {
     pkgs <- r_repos_data()[r_repo=="CRAN" & installed==TRUE,][seq_len(5),]
     pkgs2 <- r_repos_downloads(pkgs = pkgs)
     run_tests(pkgs = pkgs,
-              pkgs_out = pkgs2) 
-    
+              pkgs_out = pkgs2)
+
     #### From vector ####
     p <- "echolocatoR"
     dt <- echogithub::description_extract(ref = p,
                                           fields = NULL,
-                                          as_datatable = TRUE) 
+                                          as_datatable = TRUE)
     pkgs3 <- r_repos_downloads(pkgs = dt)
     run_tests(pkgs=dt,
-              pkgs_out = pkgs3) 
+              pkgs_out = pkgs3)
 })
