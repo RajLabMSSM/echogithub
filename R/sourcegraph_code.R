@@ -1,6 +1,6 @@
 sourcegraph_code <- function(){
     # curl \
-    # -H 'Authorization: token sgp_a39bc1d81f55b8b7485d2e9bf03ae7605e2b8168' \
+    # -H 'Authorization: token <SOURCEGRAPH_TOKEN>' \
     # -d '{"query":"query { currentUser { username } }"}' \
     # https://sourcegraph.com/.api/graphql
 
