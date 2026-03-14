@@ -15,9 +15,17 @@ r_repos_downloads_bioc_dlstats <- function(pkgs,
                        messager(paste("Batch:",i,"/",length(batches)),
                                 parallel = TRUE,
                                 v=verbose)
-                       dt <- dlstats::bioc_stats(packages = b,
-                                                 use_cache = use_cache) |>
+                       dt <- tryCatch({
+                           dlstats::bioc_stats(packages = b,
+                                               use_cache = use_cache) |>
+                               data.table::data.table()
+                       }, error = function(e){
+                           messager("WARNING: Bioc download stats ",
+                                    "unavailable for this batch: ",
+                                    conditionMessage(e),
+                                    parallel = TRUE, v=verbose)
                            data.table::data.table()
+                       })
                        messager(paste(
                            "Data for",formatC(nrow(dt),big.mark = ","),
                            "packages retrieved."
