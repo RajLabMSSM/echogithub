@@ -44,8 +44,9 @@ Imports:
     parallel,
     rworkflows
 Suggests:
+    desc,
     markdown,
-    rmarkdown, 
+    rmarkdown,
     testthat (>= 3.0.0),
     remotes,
     knitr,
