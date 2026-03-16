@@ -4,71 +4,104 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>echogithub: Getting started • echogithub</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="echogithub: Getting started">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="echogithub: Getting started">
+<style>
+.navbar {
+  background-color: #162038 !important;
+  border-bottom: 2px solid #4ecdc4;
+}
+.navbar-brand, .nav-link { color: #e8f4f4 !important; }
+.nav-link:hover { color: #2ee8d6 !important; }
+.nav-link.active { color: #2ee8d6 !important; border-bottom: 2px solid #2ee8d6; }
+pre {
+  background-color: #d6e4ee !important;
+  color: #1a2744 !important;
+  border: none !important;
+  border-radius: 12px;
+  margin: 0;
+  padding: 0.8em 1em;
+}
+code { color: #1a6b68 !important; border: none !important; }
+pre code { color: #1a2744 !important; border: none !important; background: transparent !important; }
+pre code span { border: none !important; background: transparent !important; }
+.table { color: #e8f4f4 !important; }
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(78, 205, 196, 0.05) !important;
+  color: #e8f4f4 !important;
+}
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: transparent !important;
+  color: #e8f4f4 !important;
+}
+.table > thead { border-bottom: 2px solid #4ecdc4; }
+h1, h2, h3, h4, h5, h6 { color: #4ecdc4 !important; }
+a { color: #5bc0be; }
+a:hover { color: #2ee8d6; }
+.card { background-color: #1e3050; border-color: #2a4060; }
+.footer { background-color: #162038 !important; border-top: 1px solid #2a4060; }
+.page-header { border-bottom: 2px solid #3a8d8c; }
+.sourceCode {
+  background-color: #d6e4ee !important;
+  border: 1px solid #3a8d8c;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+.sourceCode code span,
+.sourceCode code a {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+</style>
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">echogithub</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/echogithub.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
+    <a class="navbar-brand me-2" href="../index.html">echogithub</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item"><a class="nav-link" href="../articles/echogithub.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/RajLabMSSM/echogithub/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/RajLabMSSM/echogithub"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
 
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>echogithub: Getting started</h1>
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>echogithub: Getting started</h1>
                         <h4 data-toc-skip class="author"><h4>
 <br>
 Author: <i>Brian M. Schilder</i><br>
@@ -76,18 +109,15 @@ Author: <i>Brian M. Schilder</i><br>
             
             <h4 data-toc-skip class="date"><h4>
 <br>
-Most recent update: <i>Mar-15-2026</i><br>
+Most recent update: <i>Mar-16-2026</i><br>
 </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RajLabMSSM/echogithub/blob/master/vignettes/echogithub.Rmd" class="external-link"><code>vignettes/echogithub.Rmd</code></a></small>
-      <div class="hidden name"><code>echogithub.Rmd</code></div>
-
+      <div class="d-none name"><code>echogithub.Rmd</code></div>
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RajLabMSSM/echogithub" class="external-link">echogithub</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="github-branches">GitHub branches<a class="anchor" aria-label="anchor" href="#github-branches"></a>
 </h2>
@@ -95,7 +125,7 @@ Most recent update: <i>Mar-15-2026</i><br>
 <h3 id="list">List<a class="anchor" aria-label="anchor" href="#list"></a>
 </h3>
 <p>Easily find all available branches for a given GitHub repo.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">branches</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_branches.html">github_branches</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>,</span>
 <span>                                        repo <span class="op">=</span> <span class="st">"echolocatoR"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Searching for all branches in: RajLabMSSM/echolocatoR</span></span></code></pre>
@@ -105,7 +135,7 @@ Most recent update: <i>Mar-15-2026</i><br>
 <span><span class="co">##  - gh-pages</span></span>
 <span><span class="co">##  - master</span></span>
 <span><span class="co">##  - v1</span></span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">branches</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "dev"       "echoverse" "gh-pages"  "master"    "v1"</span></span></code></pre>
 </div>
@@ -115,14 +145,14 @@ Most recent update: <i>Mar-15-2026</i><br>
 <p>You can also check whether a particular branch exists. By default,
 <code><a href="../reference/github_branches.html">github_branches()</a></code> interprets “master” and “main” as
 synonymous and returns whichever one actually exists.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">branches</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_branches.html">github_branches</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>, </span>
-<span>                                        repo <span class="op">=</span> <span class="st">"echolocatoR"</span>, </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">branches</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_branches.html">github_branches</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>,</span>
+<span>                                        repo <span class="op">=</span> <span class="st">"echolocatoR"</span>,</span>
 <span>                                        branch <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Searching for all branches in: RajLabMSSM/echolocatoR</span></span></code></pre>
 <pre><code><span><span class="co">## 1 matching branch(es) found: </span></span>
 <span><span class="co">##  - master</span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">branches</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "master"</span></span></code></pre>
 </div>
@@ -130,20 +160,22 @@ synonymous and returns whichever one actually exists.</p>
 <div class="section level2">
 <h2 id="github-files">GitHub files<a class="anchor" aria-label="anchor" href="#github-files"></a>
 </h2>
-<p><code><a href="../reference/github_files.html">github_files()</a></code> lets you easily: 1. Search any GitHub
-repo (that you have access to) for files. 2. Filter those files by a
-<em>regex</em> <code>query</code>, 3. Download those files to your local
-compute (can increase <code>nThread</code> to speed up download via
-parallelization).</p>
-<p><em>NOTE</em>: To search your private repos, make sure you GitHub
-token is supplied to the <code>token</code> argument, or is saved as in
-your <em>~.Renviron</em> file, e.g.:
+<p><code><a href="../reference/github_files.html">github_files()</a></code> lets you easily:</p>
+<ol style="list-style-type: decimal">
+<li>Search any GitHub repo (that you have access to) for files.</li>
+<li>Filter those files by a <em>regex</em> <code>query</code>.</li>
+<li>Download those files to your local computer (can increase
+<code>nThread</code> to speed up download via parallelisation).</li>
+</ol>
+<p><em>NOTE</em>: To search your private repos, make sure your GitHub
+token is supplied to the <code>token</code> argument, or is saved in
+your <em>~/.Renviron</em> file, e.g.:
 <code>GITHUB_TOKEN=&lt;token_here&gt;</code></p>
 <div class="section level3">
-<h3 id="search-filter-downlaod">Search / filter / downlaod<a class="anchor" aria-label="anchor" href="#search-filter-downlaod"></a>
+<h3 id="search-filter-download">Search / filter / download<a class="anchor" aria-label="anchor" href="#search-filter-download"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_files.html">github_files</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>, </span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_files.html">github_files</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>,</span>
 <span>                                  repo <span class="op">=</span> <span class="st">"Fine_Mapping_Shiny"</span>,</span>
 <span>                                  query <span class="op">=</span> <span class="st">".md$"</span>,</span>
 <span>                                  ignore.case <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -155,7 +187,7 @@ your <em>~.Renviron</em> file, e.g.:
 <pre><code><span><span class="co">## 1 file(s) found matching query.</span></span></code></pre>
 <pre><code><span><span class="co">## + Downloading 1 files.</span></span></code></pre>
 <pre><code><span><span class="co">## Returning pre-existing file: https://raw.githubusercontent.com/RajLabMSSM/Fine_Mapping_Shiny/master/README.md</span></span></code></pre>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">files</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -189,7 +221,7 @@ your <em>~.Renviron</em> file, e.g.:
 <td align="left"><a href="https://api.github.com/repos/RajLabMSSM/Fine_Mapping_Shiny/git/blobs/0b1923bd0830aa5ebd0b9d16a367b26216ebbd35" class="external-link uri">https://api.github.com/repos/RajLabMSSM/Fine_Mapping_Shiny/git/blobs/0b1923bd0830aa5ebd0b9d16a367b26216ebbd35</a></td>
 <td align="left"><a href="https://github.com/RajLabMSSM/Fine_Mapping_Shiny/blob/master/README.md" class="external-link uri">https://github.com/RajLabMSSM/Fine_Mapping_Shiny/blob/master/README.md</a></td>
 <td align="left"><a href="https://raw.githubusercontent.com/RajLabMSSM/Fine_Mapping_Shiny/master/README.md" class="external-link uri">https://raw.githubusercontent.com/RajLabMSSM/Fine_Mapping_Shiny/master/README.md</a></td>
-<td align="left">/tmp/Rtmp6uYgBn/</td>
+<td align="left">/tmp/RtmppsX57R/</td>
 </tr></tbody>
 </table>
 </div>
@@ -197,28 +229,28 @@ your <em>~.Renviron</em> file, e.g.:
 <div class="section level2">
 <h2 id="github-pages">GitHub Pages<a class="anchor" aria-label="anchor" href="#github-pages"></a>
 </h2>
-<p>There are several functions to searching GitHub Pages websites
+<p>There are several functions for searching GitHub Pages websites
 associated with specific GitHub repos.</p>
 <div class="section level3">
 <h3 id="find-github-pages-url">Find GitHub Pages URL<a class="anchor" aria-label="anchor" href="#find-github-pages-url"></a>
 </h3>
-<p>First, since not all GitHub repo have use GitHub Pages, we should
-find out whether the one we’re interested in exist.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ghpages_url</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages.html">github_pages</a></span><span class="op">(</span>owner <span class="op">=</span><span class="st">"RajLabMSSM"</span>,</span>
+<p>First, since not all GitHub repos use GitHub Pages, we should find
+out whether the one we are interested in exists.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ghpages_url</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages.html">github_pages</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>,</span>
 <span>                                        repo <span class="op">=</span> <span class="st">"echolocatoR"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Returning valid GitHub Pages URL for repo: RajLabMSSM/echolocatoR.</span></span></code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ghpages_url</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "https://rajlabmssm.github.io/echolocatoR/"</span></span></code></pre>
-<p>If it doesn’t exist, the function will simply return
-<code>NULL</code> when you set <code>error=FALSE</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ghpages_null</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages.html">github_pages</a></span><span class="op">(</span>owner <span class="op">=</span><span class="st">"RajLabMSSM"</span>,</span>
-<span>                                        repo <span class="op">=</span> <span class="st">"Fine_Mapping_Shiny"</span>,</span>
-<span>                                        error <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>If it does not exist, the function will simply return
+<code>NULL</code> when you set <code>error = FALSE</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ghpages_null</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages.html">github_pages</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="st">"RajLabMSSM"</span>,</span>
+<span>                                         repo <span class="op">=</span> <span class="st">"Fine_Mapping_Shiny"</span>,</span>
+<span>                                         error <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Cannot find GitHub Pages URL for repo RajLabMSSM/Fine_Mapping_Shiny. Returning NULL.</span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ghpages_null</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## NULL</span></span></code></pre>
 </div>
@@ -230,9 +262,11 @@ vignettes across multiple GitHub Pages websites at once.</p>
 <div class="section level4">
 <h4 id="as-data-table">As <code>data.table</code><a class="anchor" aria-label="anchor" href="#as-data-table"></a>
 </h4>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vdt</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages_vignettes.html">github_pages_vignettes</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM"</span>,<span class="st">"neurogenomics"</span><span class="op">)</span>, </span>
-<span>                                          repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"echodata"</span>,<span class="st">"MungeSumstats"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vdt</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages_vignettes.html">github_pages_vignettes</a></span><span class="op">(</span></span>
+<span>    owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM"</span>, <span class="st">"neurogenomics"</span><span class="op">)</span>,</span>
+<span>    repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"echodata"</span>, <span class="st">"MungeSumstats"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">vdt</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -272,9 +306,9 @@ vignettes across multiple GitHub Pages websites at once.</p>
 <td align="left">articles/echodata.html</td>
 <td align="left">100644</td>
 <td align="left">blob</td>
-<td align="left">1fbfda24aafd43c85e4b70d9c33ca34c7aae406e</td>
+<td align="left">d0440b4251930f0c7f3f5b7217a10273e8ccb676</td>
 <td align="left">12505</td>
-<td align="left"><a href="https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/1fbfda24aafd43c85e4b70d9c33ca34c7aae406e" class="external-link uri">https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/1fbfda24aafd43c85e4b70d9c33ca34c7aae406e</a></td>
+<td align="left"><a href="https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/d0440b4251930f0c7f3f5b7217a10273e8ccb676" class="external-link uri">https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/d0440b4251930f0c7f3f5b7217a10273e8ccb676</a></td>
 <td align="left"><a href="https://github.com/RajLabMSSM/echodata/blob/master/articles/echodata.html" class="external-link uri">https://github.com/RajLabMSSM/echodata/blob/master/articles/echodata.html</a></td>
 <td align="left"><a href="https://raw.githubusercontent.com/RajLabMSSM/echodata/gh-pages/articles/echodata.html" class="external-link uri">https://raw.githubusercontent.com/RajLabMSSM/echodata/gh-pages/articles/echodata.html</a></td>
 <td align="left"><a href="https://rajlabmssm.github.io/echodata/" class="external-link uri">https://rajlabmssm.github.io/echodata/</a></td>
@@ -287,9 +321,9 @@ vignettes across multiple GitHub Pages websites at once.</p>
 <td align="left">articles/echolocatoR_Finemapping_Portal.html</td>
 <td align="left">100644</td>
 <td align="left">blob</td>
-<td align="left">82b7ad38e5441b67f56057c98c59a92a1cdeda8c</td>
+<td align="left">5ad7fda2f3700b037bff3206f720313e2d75e828</td>
 <td align="left">42174</td>
-<td align="left"><a href="https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/82b7ad38e5441b67f56057c98c59a92a1cdeda8c" class="external-link uri">https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/82b7ad38e5441b67f56057c98c59a92a1cdeda8c</a></td>
+<td align="left"><a href="https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/5ad7fda2f3700b037bff3206f720313e2d75e828" class="external-link uri">https://api.github.com/repos/RajLabMSSM/echodata/git/blobs/5ad7fda2f3700b037bff3206f720313e2d75e828</a></td>
 <td align="left"><a href="https://github.com/RajLabMSSM/echodata/blob/master/articles/echolocatoR_Finemapping_Portal.html" class="external-link uri">https://github.com/RajLabMSSM/echodata/blob/master/articles/echolocatoR_Finemapping_Portal.html</a></td>
 <td align="left"><a href="https://raw.githubusercontent.com/RajLabMSSM/echodata/gh-pages/articles/echolocatoR_Finemapping_Portal.html" class="external-link uri">https://raw.githubusercontent.com/RajLabMSSM/echodata/gh-pages/articles/echolocatoR_Finemapping_Portal.html</a></td>
 <td align="left"><a href="https://rajlabmssm.github.io/echodata/" class="external-link uri">https://rajlabmssm.github.io/echodata/</a></td>
@@ -303,13 +337,15 @@ Finemapping Portal</a></td>
 <div class="section level4">
 <h4 id="as-table-of-contents">As table of contents<a class="anchor" aria-label="anchor" href="#as-table-of-contents"></a>
 </h4>
-<p>You can also use the <code>as_toc=TRUE</code> argument to turn the
+<p>You can also use the <code>as_toc = TRUE</code> argument to turn the
 vignettes <code>data.table</code> into an HTML Table of Contents
 (TOC).</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span>  <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages_vignettes.html">github_pages_vignettes</a></span><span class="op">(</span>owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM"</span>,<span class="st">"neurogenomics"</span><span class="op">)</span>, </span>
-<span>                                           repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"echodata"</span>,<span class="st">"MungeSumstats"</span><span class="op">)</span>,</span>
-<span>                                           as_toc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/github_pages_vignettes.html">github_pages_vignettes</a></span><span class="op">(</span></span>
+<span>    owner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM"</span>, <span class="st">"neurogenomics"</span><span class="op">)</span>,</span>
+<span>    repo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"echodata"</span>, <span class="st">"MungeSumstats"</span><span class="op">)</span>,</span>
+<span>    as_toc <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <ul class="toc-list">
 <li>
 <h3>
@@ -339,8 +375,8 @@ Finemapping Portal</a>
 <h2 id="description-files">
 <em>DESCRIPTION</em> files<a class="anchor" aria-label="anchor" href="#description-files"></a>
 </h2>
-<p><em>DESCRIPTION</em> files contains essential information about each
-R package. However finding and importing them is not always
+<p><em>DESCRIPTION</em> files contain essential information about each R
+package. However, finding and importing them is not always
 straightforward (e.g. when the package is not yet installed).
 <code><a href="../reference/description_extract.html">echogithub::description_extract</a></code> searches a variety of
 sources (e.g. local files, local installations, GitHub) to find the
@@ -350,16 +386,18 @@ correct <em>DESCRIPTION</em> file and import it into the easy-to-use
 <div class="section level3">
 <h3 id="find-and-extract">Find and extract<a class="anchor" aria-label="anchor" href="#find-and-extract"></a>
 </h3>
-<p><code>description_extract</code> then takes that object and extracts
-and parses just the fields you need, returning them as a named list.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/description_extract.html">description_extract</a></span><span class="op">(</span>refs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM/echolocatoR"</span>,</span>
-<span>                                                <span class="st">"RajLabMSSM/echogithub"</span>,</span>
-<span>                                                <span class="st">"RajLabMSSM/rworkflows"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><code>description_extract</code> takes that object and extracts and
+parses just the fields you need, returning them as a named list.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">echogithub</span><span class="fu">::</span><span class="fu"><a href="../reference/description_extract.html">description_extract</a></span><span class="op">(</span></span>
+<span>    refs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RajLabMSSM/echolocatoR"</span>,</span>
+<span>             <span class="st">"RajLabMSSM/echogithub"</span>,</span>
+<span>             <span class="st">"RajLabMSSM/rworkflows"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## When refs is provided, paths must have the same length (or be set to NULL). Setting paths=NULL.</span></span></code></pre>
 <pre><code><span><span class="co">## Cannot find DESCRIPTION for: echolocatoR</span></span></code></pre>
 <pre><code><span><span class="co">## Importing cached file: /github/home/.cache/R/rworkflows/RajLabMSSM.echolocatoR_DESCRIPTION</span></span></code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Key: &lt;repo&gt;</span></span>
 <span><span class="co">##                   package         owner        repo</span></span>
@@ -377,7 +415,7 @@ and parses just the fields you need, returning them as a named list.</p>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R Under development (unstable) (2026-03-12 r89607)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu</span></span>
@@ -429,29 +467,22 @@ and parses just the fields you need, returning them as a named list.</p>
 <span><span class="co">## [64] S7_0.2.1            RCurl_1.98-1.17</span></span></code></pre>
 </details><hr>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Brian Schilder, Jack Humphrey, Towfique Raj.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Brian Schilder, Jack Humphrey, Towfique Raj.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 
