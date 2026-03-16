@@ -1,17 +1,24 @@
 ---
-title: "echogithub: Getting started" 
-author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
+title: "echogithub: Getting started"
+author: "<h4>Author: <i>Brian M. Schilder</i></h4>"
 date: "<h4>Most recent update: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
   BiocStyle::html_document
 vignette: >
-    %\VignetteIndexEntry{echogithub} 
+    %\VignetteIndexEntry{echogithub}
     %\usepackage[utf8]{inputenc}
     %\VignetteEngine{knitr::rmarkdown}
 ---
 
-```{r setup}
+```{r setup, include = FALSE}
 library(echogithub)
+has_internet <- function() {
+    tryCatch({
+        con <- url("https://github.com", open = "r")
+        close(con)
+        TRUE
+    }, error = function(e) FALSE)
+}
 ```
 
 # GitHub branches
@@ -20,7 +27,7 @@ library(echogithub)
 
 Easily find all available branches for a given GitHub repo.
 
-```{r}
+```{r, eval = has_internet()}
 branches <- echogithub::github_branches(owner = "RajLabMSSM",
                                         repo = "echolocatoR")
 print(branches)
@@ -29,35 +36,35 @@ print(branches)
 ## Check
 
 You can also check whether a particular branch exists.
-By default, `github_branches()` interprets "master" and "main" as synonymous and 
+By default, `github_branches()` interprets "master" and "main" as synonymous and
 returns whichever one actually exists.
 
-```{r}
-branches <- echogithub::github_branches(owner = "RajLabMSSM", 
-                                        repo = "echolocatoR", 
+```{r, eval = has_internet()}
+branches <- echogithub::github_branches(owner = "RajLabMSSM",
+                                        repo = "echolocatoR",
                                         branch = "main")
 print(branches)
 ```
 
 
-#  GitHub files 
+#  GitHub files
 
 `github_files()` lets you easily:
-1. Search any GitHub repo
-(that you have access to) for files. 
-2. Filter those files by a *regex* `query`,
-3. Download those files to your local compute 
-(can increase `nThread` to speed up download via parallelization).
 
-*NOTE*: 
-To search your private repos, make sure you
-GitHub token is supplied to the `token` argument, or is saved as in your
-*~.Renviron* file, e.g.: `GITHUB_TOKEN=<token_here>`
+1. Search any GitHub repo (that you have access to) for files.
+2. Filter those files by a *regex* `query`.
+3. Download those files to your local computer
+(can increase `nThread` to speed up download via parallelisation).
 
-## Search / filter / downlaod
+*NOTE*:
+To search your private repos, make sure your
+GitHub token is supplied to the `token` argument, or is saved in your
+*~/.Renviron* file, e.g.: `GITHUB_TOKEN=<token_here>`
 
-```{r}
-files <- echogithub::github_files(owner = "RajLabMSSM", 
+## Search / filter / download
+
+```{r, eval = has_internet()}
+files <- echogithub::github_files(owner = "RajLabMSSM",
                                   repo = "Fine_Mapping_Shiny",
                                   query = ".md$",
                                   ignore.case = TRUE,
@@ -67,89 +74,93 @@ knitr::kable(utils::head(files))
 
 # GitHub Pages
 
-There are several functions to searching GitHub Pages websites associated
+There are several functions for searching GitHub Pages websites associated
 with specific GitHub repos.
 
 ## Find GitHub Pages URL
 
+First, since not all GitHub repos use GitHub Pages, we should find out
+whether the one we are interested in exists.
 
-First, since not all GitHub repo have use GitHub Pages, we should find out 
-whether the one we're interested in exist. 
-
-```{r}
-ghpages_url <- echogithub::github_pages(owner ="RajLabMSSM",
+```{r, eval = has_internet()}
+ghpages_url <- echogithub::github_pages(owner = "RajLabMSSM",
                                         repo = "echolocatoR")
 print(ghpages_url)
 ```
 
-If it doesn't exist, the function will simply return `NULL` when you set 
-`error=FALSE`.
+If it does not exist, the function will simply return `NULL` when you set
+`error = FALSE`.
 
-```{r}
-ghpages_null <- echogithub::github_pages(owner ="RajLabMSSM",
-                                        repo = "Fine_Mapping_Shiny",
-                                        error = FALSE)
+```{r, eval = has_internet()}
+ghpages_null <- echogithub::github_pages(owner = "RajLabMSSM",
+                                         repo = "Fine_Mapping_Shiny",
+                                         error = FALSE)
 print(ghpages_null)
 ```
 
 
 ## Find vignettes
 
-`github_pages_vignettes` allows you to easily gather all vignettes 
+`github_pages_vignettes` allows you to easily gather all vignettes
 across multiple GitHub Pages websites at once.
 
 ### As `data.table`
 
-```{r}  
-vdt <- echogithub::github_pages_vignettes(owner = c("RajLabMSSM","neurogenomics"), 
-                                          repo = c("echodata","MungeSumstats"))
+```{r, eval = has_internet()}
+vdt <- echogithub::github_pages_vignettes(
+    owner = c("RajLabMSSM", "neurogenomics"),
+    repo = c("echodata", "MungeSumstats")
+)
 knitr::kable(utils::head(vdt))
 ```
 
 ### As table of contents
 
-You can also use the `as_toc=TRUE` argument to turn the vignettes `data.table`
-into an HTML Table of Contents (TOC).
+You can also use the `as_toc = TRUE` argument to turn the vignettes
+`data.table` into an HTML Table of Contents (TOC).
 
-```{r, results='asis'}
-toc <-  echogithub::github_pages_vignettes(owner = c("RajLabMSSM","neurogenomics"), 
-                                           repo = c("echodata","MungeSumstats"),
-                                           as_toc = TRUE)
+```{r, results='asis', eval = has_internet()}
+toc <- echogithub::github_pages_vignettes(
+    owner = c("RajLabMSSM", "neurogenomics"),
+    repo = c("echodata", "MungeSumstats"),
+    as_toc = TRUE
+)
 ```
 
 # *DESCRIPTION* files
 
-*DESCRIPTION* files contains essential information about each R package.
-However finding and importing them is not always straightforward 
+*DESCRIPTION* files contain essential information about each R package.
+However, finding and importing them is not always straightforward
 (e.g. when the package is not yet installed).
-`echogithub::description_extract` searches a variety of sources 
-(e.g. local files, local installations, GitHub) to find the correct 
+`echogithub::description_extract` searches a variety of sources
+(e.g. local files, local installations, GitHub) to find the correct
 *DESCRIPTION* file and import it into the easy-to-use `description` format.
 
 It then parses it to extract the relevant information.
- 
+
 ## Find and extract
 
-`description_extract` then takes that object and extracts and parses
+`description_extract` takes that object and extracts and parses
 just the fields you need, returning them as a named list.
 
-```{r}
-res <- echogithub::description_extract(refs = c("RajLabMSSM/echolocatoR",
-                                                "RajLabMSSM/echogithub",
-                                                "RajLabMSSM/rworkflows"))
+```{r, eval = has_internet()}
+res <- echogithub::description_extract(
+    refs = c("RajLabMSSM/echolocatoR",
+             "RajLabMSSM/echogithub",
+             "RajLabMSSM/rworkflows")
+)
 methods::show(res)
 ```
 
 
-# Session Info 
+# Session Info
 
-<details> 
+<details>
 
 ```{r Session Info}
 utils::sessionInfo()
 ```
 
-</details>  
+</details>
 
 <hr>
-
